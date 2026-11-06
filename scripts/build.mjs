@@ -27,5 +27,7 @@ await fs.mkdir(`${out}/admin`,{recursive:true});await fs.writeFile(`${out}/admin
 const preview='dashboard/public/preview';await fs.mkdir(`${preview}/content`,{recursive:true});for(const file of ['index.html','styles.css','app.js','analytics.js'])await fs.copyFile(file,`${preview}/${file}`);await fs.copyFile('content/schema.js',`${preview}/content/schema.js`);await fs.cp('assets',`${preview}/assets`,{recursive:true});
 await fs.copyFile('content/schema.js','dashboard/public/schema.js');
 console.log(`Built ${d.products.length} products in ${d.categories.length} categories.`);
+await fs.writeFile(`${out}/sitemap.xml`, '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://tentboy.orportraits.com/</loc></url></urlset>\n');
+await fs.writeFile(`${out}/robots.txt`, 'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://tentboy.orportraits.com/sitemap.xml\n');
 
 

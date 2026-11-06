@@ -185,5 +185,26 @@
     "coverAlt": "Tent Boy — The Pop-Up Portrait Studio Quick Start Guide cover and included topics"
   },
   "disclosure": "Amazon links are paid links; I may earn a commission if you buy through them.",
-  "socials": []
+  "socials": [
+    {
+      "platform": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/orportraits/"
+    },
+    {
+      "platform": "facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/orportraits/"
+    },
+    {
+      "platform": "pinterest",
+      "label": "Pinterest",
+      "url": "https://www.pinterest.com/orportraits/"
+    },
+    {
+      "platform": "tiktok",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@orportraits"
+    }
+  ]
 }

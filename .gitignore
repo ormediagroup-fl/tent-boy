@@ -12,3 +12,6 @@ dashboard/.wrangler-config/
 
 dashboard/public/blog.js
 
+dashboard/public/social-icons.js
+dashboard/public/tent-boy-mark.svg
+

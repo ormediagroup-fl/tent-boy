@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "home": {
+    "headline": "Small tent.\nBig portrait\nenergy.",
+    "intro": "A canopy. A camera. A little creative chaos. Welcome to Tent Boy’s corner of the pop-up portrait world.",
+    "heroImage": "assets/christmas-market-exterior.png",
+    "heroAlt": "Straight-on view of the Tent Boy market canopy with Christmas wreath backdrop, tree, lights and banner",
+    "heroCaption": "A portrait studio with a different kind of roof.",
+    "note": "Pack it up. Pop it open. Make something good.",
+    "stamp": "LESS STUDIO. MORE POSSIBILITIES.",
+    "ticker": "POP UP. MAKE PORTRAITS. PACK DOWN. DO IT AGAIN. ↗",
+    "gearHeadline": "What goes\nunder the tent.",
+    "gearIntro": "Explore the gear behind a pop-up portrait setup. Choose a category to find the pieces that fit the way you shoot.",
+    "setupHeadline": "It’s a tent.\nUntil it’s a studio.",
+    "setupDescription": "The real setup is part gear, part scene-building, and part making the most of the space you have. These photos come from the Tent Boy setup itself."
+  },
+  "categories": [
+    {
+      "id": "structure",
+      "name": "Canopy / structure",
+      "description": "Give your portrait space a home base. Plan for the frame, sidewalls and secure anchoring your location requires."
+    },
+    {
+      "id": "backdrops",
+      "name": "Backdrops / flooring",
+      "description": "Build a world behind your subject. Think about backdrop size, how it hangs, and what happens at ground level. Setup photo shown for context; it does not identify the linked stand."
+    },
+    {
+      "id": "lighting",
+      "name": "Lighting / power",
+      "description": "Make room for lights, modifiers and a power plan. Match the equipment to the conditions where you work. Setup photo shown for context; it does not identify the linked stands."
+    },
+    {
+      "id": "camera",
+      "name": "Camera / lenses",
+      "description": "Choose a camera and lens pairing that works within the tent’s shooting distance. Check compatibility before you buy."
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "description": "Clips, cases and thoughtful details help pull a setup together. Leave room on the list for the small essentials. Setup photo shown for context; the linked Shutter Huggers are not pictured."
+    }
+  ],
+  "products": [
+    {
+      "id": "backdrops-1",
+      "name": "Photo Backdrop Stand 8x8 ft, Heavy Duty Adjustable Banner Holder",
+      "description": "",
+      "category": "backdrops",
+      "url": "https://link.amazon/B0gXTrVGe",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-1",
+      "name": "IFOOTAGE RB-A400 Round Base Light Stand Monopod 79\" Tripod",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/A0dJDnT9w",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-2",
+      "name": "IFOOTAGE RB-A400 Round Base Light Stand Monopod 79\" — 2 Pack",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B08EDJmSL",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-3",
+      "name": "IFOOTAGE Cobra RB-A500 79\" Round Base Monopod — heavy-duty floor stand with weighted base, adjustable height; base diameter 50 cm / 19.7 in",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B00VfAqeU",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-4",
+      "name": "GODOX AD300 Pro II AD300Pro II TTL Portable Outdoor Flash Strobe Monolight",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B04bQ3gvU",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-5",
+      "name": "Godox AD200 Pro AD200Pro Pocket Outdoor Flash Strobe, 200Ws 2.4G TTL",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B0hUrX8kw",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-6",
+      "name": "Godox ML-GB Bowens Adapter — mount adapter for LED video lights",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B068mQL8T",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-7",
+      "name": "SmallRig 35\" Bowens Mount Softbox Photography Lighting Kit — Quick Release",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B0dUC9LIu",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-8",
+      "name": "SmallRig 25.6\" Bowens Mount Softbox Photography Lighting Kit — Quick Release",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B0bjXc7Fq",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "lighting-9",
+      "name": "Godox S3 Speedlite Bracket Bowens Mount Holder — S2 Upgrade",
+      "description": "",
+      "category": "lighting",
+      "url": "https://link.amazon/B0eOsTwL1",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "accessories-1",
+      "name": "Shutter Hugger — handmade knitted camera lens accessory, Orange",
+      "description": "",
+      "category": "accessories",
+      "url": "https://link.amazon/B09vsNWnZ",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "accessories-2",
+      "name": "Shutter Hugger — handmade knitted camera lens accessory, Blue",
+      "description": "",
+      "category": "accessories",
+      "url": "https://link.amazon/B0bF1e2CN",
+      "published": true,
+      "featured": false,
+      "image": "",
+      "alt": ""
+    }
+  ],
+  "guide": {
+    "visible": false,
+    "title": "Tent Boy Quick Start Guide",
+    "description": "",
+    "url": "",
+    "price": "",
+    "cover": "",
+    "coverAlt": ""
+  },
+  "disclosure": "Amazon links are paid links; I may earn a commission if you buy through them.",
+  "socials": []
+}

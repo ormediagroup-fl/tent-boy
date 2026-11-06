@@ -9,3 +9,5 @@ body{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .guide-cover:has(img){padding:0;border:0;background:transparent;transform:none;max-width:100%;overflow:hidden}.guide-cover img{width:100%;height:auto;object-fit:contain}
+.analytics-consent{position:fixed;z-index:1000;bottom:16px;left:16px;right:16px;max-width:680px;margin:auto;padding:22px;background:#fff;color:#282a2c;border:1px solid #88713f;box-shadow:0 8px 40px #0003;font-size:14px}.analytics-consent p{margin-bottom:14px}.analytics-consent>div{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.analytics-consent button{flex:1;padding:12px 16px;border:1px solid #282a2c;background:#282a2c;color:white;cursor:pointer}.analytics-consent button:last-child{background:white;color:#282a2c}.analytics-consent a{font-size:12px}.analytics-preferences{background:transparent;border:0;padding:8px;color:inherit;text-decoration:underline;cursor:pointer;font-size:12px}.analytics-consent button:focus-visible,.analytics-preferences:focus-visible{outline:3px solid #88713f;outline-offset:3px}
+

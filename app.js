@@ -1,3 +1,12 @@
+// Correct the vendor's unescaped source URL before the embedded page loads.
+if(typeof MutationObserver!=='undefined'){
+ const normalize=()=>document.querySelectorAll('#guide iframe[id^="payhip_iframe_"]').forEach(frame=>{
+  if(frame.dataset.payhipNormalized)return;const url=new URL(frame.src);if(url.origin!=='https://payhip.com')return;
+  frame.dataset.payhipNormalized='true';url.hash='';url.searchParams.set('iframe_id',frame.id.replace('payhip_iframe_',''));url.searchParams.set('source_url',location.href);
+  frame.title='Purchase the Tent Boy guide on Payhip';frame.src=url.href;
+ });
+ const guide=document.querySelector('#guide');if(guide){new MutationObserver(normalize).observe(guide,{childList:true,subtree:true});normalize();}
+}
 // Payhip's loader appends iframe_id after an unescaped source_url fragment.
 // Match the sending frame instead of trusting its sometimes-missing message ID.
 window.addEventListener('message',event=>{

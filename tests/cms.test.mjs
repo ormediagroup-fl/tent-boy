@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {validate,httpsUrl,publicContent,publishedCatalog,REQUIRED_DISCLOSURE} from '../content/schema.js';
 import worker from '../dashboard/src/worker.js';
-const seed=JSON.parse(await fs.readFile(new URL('../content/site.json',import.meta.url)));
+const seed=JSON.parse(await fs.readFile(new URL('./fixtures/site.json',import.meta.url)));
 test('migration preserves 12 supplied products, exact updated bracket URL, no prices',()=>{
  assert.deepEqual(validate(seed),[]);assert.equal(seed.products.length,12);assert.equal(seed.products.find(p=>p.name.startsWith('Godox S3')).url,'https://link.amazon/B0eOsTwL1');assert.equal(seed.guide.price,'');assert.equal(seed.guide.url,'');
 });
@@ -59,3 +59,5 @@ test('draft save never changes main; publish checks ancestry and never force pus
   compareStatus='ahead';res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,200);assert.deepEqual(calls.find(c=>c.p.endsWith('/git/refs/heads/main')).body,{sha:'draft-sha',force:false});
  }finally{globalThis.fetch=original;}
 });
+
+test('current website content is valid',async()=>{const current=JSON.parse(await fs.readFile(new URL('../content/site.json',import.meta.url)));assert.deepEqual(validate(current),[]);});

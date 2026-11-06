@@ -2,7 +2,7 @@
 if(typeof MutationObserver!=='undefined'){
  const normalize=()=>document.querySelectorAll('#guide iframe[id^="payhip_iframe_"]').forEach(frame=>{
   if(frame.dataset.payhipNormalized)return;const url=new URL(frame.src);if(url.origin!=='https://payhip.com')return;
-  frame.dataset.payhipNormalized='true';url.hash='';url.searchParams.set('iframe_id',frame.id.replace('payhip_iframe_',''));url.searchParams.set('source_url',location.href);
+  frame.dataset.payhipNormalized='true';url.hash='';url.searchParams.set('iframe_id',frame.id.replace('payhip_iframe_',''));url.searchParams.delete('source_url');url.searchParams.delete('referrer');
   frame.title='Purchase the Tent Boy guide on Payhip';frame.height='1600';frame.style.height='1600px';frame.scrolling='auto';frame.addEventListener('load',()=>document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true));frame.src=url.href;
  });
  const guide=document.querySelector('#guide');if(guide){new MutationObserver(normalize).observe(guide,{childList:true,subtree:true});normalize();}
@@ -36,4 +36,5 @@ export function render(data){
 }
 if(new URLSearchParams(location.search).has('preview')){window.addEventListener('message',e=>{if(e.source===parent&&e.origin===location.origin&&e.data?.type==='tentboy-preview')render(e.data.content);});parent.postMessage({type:'tentboy-preview-ready'},location.origin);}
 else fetch('./content/public.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(render).catch(()=>{const p=document.createElement('p');p.textContent='The gear list could not load. Please refresh in a moment.';$('#gear-grid').append(p);});
+
 

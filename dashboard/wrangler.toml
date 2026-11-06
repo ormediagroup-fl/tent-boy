@@ -1,0 +1,24 @@
+name = "tent-boy-admin"
+main = "src/worker.js"
+compatibility_date = "2026-11-05"
+workers_dev = true
+
+[assets]
+directory = "public"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+# Replace these during account setup. These are identifiers, never secrets.
+ADMIN_ORIGIN = "https://REPLACE-WITH-YOUR-WORKER.workers.dev"
+OWNER = "ormediagroup-fl"
+REPO = "tent-boy"
+APP_ID = "REPLACE-APP-ID"
+INSTALLATION_ID = "REPLACE-INSTALLATION-ID"
+OAUTH_CLIENT_ID = "REPLACE-OAUTH-CLIENT-ID"
+ALLOWED_USER_ID = "347175880"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tent-boy-admin"
+database_id = "cc49f879-fcc2-450b-b56b-542dec7ac34a"

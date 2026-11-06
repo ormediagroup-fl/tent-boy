@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dashboard/public/preview/
+dashboard/.wrangler/
+dashboard/.dev.vars
+.env*
+*.pem
+.pnpm-store/
+dashboard/public/schema.js

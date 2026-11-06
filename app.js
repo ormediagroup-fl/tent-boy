@@ -3,7 +3,7 @@ if(typeof MutationObserver!=='undefined'){
  const normalize=()=>document.querySelectorAll('#guide iframe[id^="payhip_iframe_"]').forEach(frame=>{
   if(frame.dataset.payhipNormalized)return;const url=new URL(frame.src);if(url.origin!=='https://payhip.com')return;
   frame.dataset.payhipNormalized='true';url.hash='';url.searchParams.set('iframe_id',frame.id.replace('payhip_iframe_',''));url.searchParams.set('source_url',location.href);
-  frame.title='Purchase the Tent Boy guide on Payhip';frame.src=url.href;
+  frame.title='Purchase the Tent Boy guide on Payhip';frame.height='1600';frame.style.height='1600px';frame.scrolling='auto';frame.addEventListener('load',()=>document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true));frame.src=url.href;
  });
  const guide=document.querySelector('#guide');if(guide){new MutationObserver(normalize).observe(guide,{childList:true,subtree:true});normalize();}
 }

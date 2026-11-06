@@ -2,7 +2,7 @@
 
 ## Current status
 
-The CMS implementation is complete locally. Authentication is **not activated** until the account setup below is completed. No GitHub repository was created or modified remotely, no dashboard was deployed, no public site was published, and no DNS or Squarespace settings were changed.
+The dashboard is live at https://tent-boy-admin.orportraits.workers.dev/admin/. Owner GitHub sign-in, loading 12 products, authenticated preview, and saving an unchanged draft have been verified. Unauthenticated content and preview requests return 401. The public website remains unpublished. DNS and Squarespace settings remain unchanged. The following setup steps document the configured services and recovery procedure.
 
 The code uses a small purpose-built Git-backed CMS instead of Decap. Decap's standard GitHub backend authenticates the editor in the browser and gives that browser a GitHub token. This dashboard instead uses a backend-for-frontend: GitHub tokens and the GitHub App private key stay on the Cloudflare Worker. The browser receives only a random, HttpOnly session cookie plus a CSRF value. There is no password, personal access token, or OAuth secret in public JavaScript.
 
@@ -188,3 +188,14 @@ Free operation is plausible for a small single-editor catalog, not guaranteed. C
 - [Cloudflare Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Cloudflare D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/)
 - [Amazon disclosure guidance](https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98)
+
+## Blog and visual editor
+
+Open the dashboard → Blog → New post. Write a title, set a URL name, date and summary, and add a cover photo if desired. Use the visual toolbar for bold, italic, underline, headings, quotes, fonts, lists, links, undo/redo and inline photos. Fonts apply to the text block. Paste inserts plain text; apply formatting using the toolbar. Nested lists are flattened to one level.
+
+New posts start hidden. Save draft, open Preview (Phone or Wide), then enable Include on public website, save and preview again, and Publish saved draft. Publishing submits the entire saved site draft and starts the existing GitHub Pages build. Posts are listed newest first by date; dates do not schedule publication. Hidden/deleted posts are removed on the next successful build. Changing a published URL breaks old links; keep URL names stable.
+
+Drafts stay off the rendered public website, but this is a public GitHub repository: saved draft source and uploaded photos are readable in Git history. Do not save confidential information. Unsaved edits live only in the current tab. Image uploads support JPEG, PNG and WebP (export HEIC as JPEG), optimized to WebP up to 1600 pixels and 1 MB. Save at most 20 new photos at once. The existing 500 KB content-file limit still applies; split very large catalogs into separate files in a future upgrade if needed.
+
+Published posts generate static HTML, page titles, descriptions, canonical/social metadata and sitemap entries. Rich text is stored as structured blocks, escaped on rendering and validated by the Worker and build. No raw authored HTML executes. No new accounts, subscriptions or services are required.
+

@@ -7,3 +7,8 @@ dashboard/.dev.vars
 *.pem
 .pnpm-store/
 dashboard/public/schema.js
+dashboard/build/
+dashboard/.wrangler-config/
+
+dashboard/public/blog.js
+

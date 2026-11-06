@@ -1,3 +1,4 @@
+import {validatePosts} from './blog.js';
 export const REQUIRED_DISCLOSURE = 'As an Amazon Associate I earn from qualifying purchases.';
 export function httpsUrl(value, kind = 'social') {
   try {
@@ -39,9 +40,11 @@ export function validate(data) {
   check(!data.guide.cover || !!data.guide.coverAlt?.trim(), 'Guide cover needs descriptive image text.');
   check(Array.isArray(data.socials) && data.socials.length <= 20, 'Maximum 20 social links.');
   for (const s of data.socials || []) check(typeof s.label === 'string' && !!s.label.trim() && httpsUrl(s.url), 'Social links need a label and HTTPS URL.');
-  return errors;
+  return [...errors,...validatePosts(data.posts)];
 }
 export function publishedCatalog(data) {
   return data.categories.map(c => ({ ...c, products: data.products.filter(p => p.published && p.category === c.id) })).filter(c => c.products.length);
 }
-export function publicContent(data) { return {...data, products:data.products.filter(p=>p.published), categories:publishedCatalog(data).map(({products,...c})=>c), guide:data.guide.visible?data.guide:{visible:false}}; }
+export function publicContent(data) { return {...data, posts:(data.posts||[]).filter(p=>p.published), products:data.products.filter(p=>p.published), categories:publishedCatalog(data).map(({products,...c})=>c), guide:data.guide.visible?data.guide:{visible:false}}; }
+
+

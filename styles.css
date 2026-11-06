@@ -15,3 +15,6 @@ body{overflow-x:clip}
 
 
 @media(max-width:600px){.brand .brand-mark{width:36px;height:36px;top:-3px}.brand span{white-space:nowrap}}
+
+.guide-embed-section.wrap{display:block;width:min(670px,calc(100% - 36px));max-width:670px;padding:70px 0}.guide-embed-section iframe{width:100%;max-width:100%}.guide-embed-section [id^="payhip_loading_"] img{width:24px;height:24px}.payhip-fallback{font-size:13px;margin:22px 0 0;color:var(--muted)}.payhip-fallback a{text-underline-offset:3px}
+

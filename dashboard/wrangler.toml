@@ -10,7 +10,7 @@ run_worker_first = true
 
 [vars]
 # Replace these during account setup. These are identifiers, never secrets.
-ADMIN_ORIGIN = "https://REPLACE-WITH-YOUR-WORKER.workers.dev"
+ADMIN_ORIGIN = "https://tent-boy-admin.orportraits.workers.dev"
 OWNER = "ormediagroup-fl"
 REPO = "tent-boy"
 APP_ID = "REPLACE-APP-ID"

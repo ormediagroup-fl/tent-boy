@@ -1,6 +1,6 @@
 # Tent Boy
 
-Standalone GitHub Pages website with a secure Git-backed content dashboard. Public hosting remains separate from Squarespace. Nothing is deployed yet.
+Standalone GitHub Pages website with a secure Git-backed content dashboard. Public hosting remains separate from Squarespace. Source is now in https://github.com/ormediagroup-fl/tent-boy; website and dashboard are not deployed. See [SETUP-STATUS.md](SETUP-STATUS.md) for account setup progress.
 
 See **[ADMIN-SETUP.md](ADMIN-SETUP.md)** for account setup, authentication, deployment, DNS, costs, recovery and daily use. Those instructions replace the earlier buildless / branch-publishing instructions.
 

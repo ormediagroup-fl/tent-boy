@@ -25,11 +25,12 @@ export function richEditor(parent,post,{changed,upload,resolveImage,onError}){
  select('Font',[['Sans serif','Arial'],['Serif','Georgia'],['Monospace','monospace']],'fontName');
  button('Link',()=>{const value=prompt('Enter the full HTTPS link:','https://');if(value===null)return;if(!safeLink(value)){onError('Enter a valid HTTPS link.');return;}command('createLink',value);});button('Remove link',()=>command('unlink'));
  const file=document.createElement('input');file.type='file';file.accept='image/jpeg,image/png,image/webp';file.hidden=true;button('Add photo',()=>file.click());
- file.onchange=async()=>{try{if(!file.files[0])return;const alt=prompt('Describe this photo for readers using a screen reader:');if(!alt?.trim())return;const {path,url}=await upload(file.files[0]);focus();const figure=document.createElement('figure'),img=document.createElement('img');img.dataset.asset=path;img.src=url;img.alt=alt;figure.append(img);const s=window.getSelection();if(s.rangeCount&&body.contains(s.anchorNode)){let anchor=s.anchorNode;while(anchor.parentNode!==body)anchor=anchor.parentNode;anchor.after(figure);}else body.append(figure);body.append(document.createElement('p'));sync();}catch(e){onError(e.message);}finally{file.value='';}};
+ file.onchange=async()=>{try{if(!file.files[0])return;const alt=prompt('Describe this photo for readers using a screen reader:');if(!alt?.trim())return;const {path,url}=await upload(file.files[0]);focus();const figure=document.createElement('figure'),img=document.createElement('img');img.dataset.asset=path;img.src=url;img.alt=alt;figure.append(img);const s=window.getSelection();if(s.rangeCount&&s.anchorNode!==body&&body.contains(s.anchorNode)){let anchor=s.anchorNode;while(anchor.parentNode!==body)anchor=anchor.parentNode;anchor.after(figure);}else body.append(figure);body.append(document.createElement('p'));sync();}catch(e){onError(e.message);}finally{file.value='';}};
  // Paste plain text to keep pasted scripts, tracking images, and foreign styles out.
  body.onpaste=e=>{e.preventDefault();command('insertText',e.clipboardData.getData('text/plain'));};
  body.addEventListener('input',sync);parent.append(tools,body,file);
 }
 let controller=new AbortController();
 export function resetEditor(){controller.abort();controller=new AbortController();}
+
 

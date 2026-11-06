@@ -2,7 +2,7 @@
 // Match the sending frame instead of trusting its sometimes-missing message ID.
 window.addEventListener('message',event=>{
  if(event.origin!=='https://payhip.com'||typeof event.data!=='string')return;
- const match=/^load-page\s+\S+\s+(\d+(?:\.\d+)?)$/.exec(event.data.trim());if(!match)return;
+ const match=/^load-page\s+(?:\S+\s+)?(\d+(?:\.\d+)?)$/.exec(event.data.trim());if(!match)return;
  const frame=[...document.querySelectorAll('#guide iframe')].find(f=>f.contentWindow===event.source);if(!frame)return;
  const height=Number(match[1]);if(!Number.isFinite(height)||height<100||height>30000)return;
  frame.height=String(Math.ceil(height));frame.style.height=Math.ceil(height)+'px';frame.title='Purchase the Tent Boy guide on Payhip';

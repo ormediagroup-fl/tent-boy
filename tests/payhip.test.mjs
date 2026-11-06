@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs/promises';import vm from 'node:vm';
 const code=(await fs.readFile(new URL('../app.js',import.meta.url),'utf8')).split("import {socialIcon}")[0];
-function setup(){let receive;const frame={contentWindow:{},style:{}},loader={hidden:false};vm.runInNewContext(code,{window:{addEventListener(type,fn){receive=fn}},document:{querySelectorAll(selector){return selector.includes('iframe')?[frame]:[loader]}}});return {frame,loader,receive};}
+function setup(){let receive;const frame={contentWindow:{},dataset:{},style:{setProperty(){}}},loader={hidden:false};vm.runInNewContext(code,{window:{addEventListener(type,fn){receive=fn}},document:{querySelector(){return null},querySelectorAll(selector){return selector.includes('iframe')?[frame]:[loader]}}});return {frame,loader,receive};}
 test('Payhip anchor resize uses verified sender instead of missing iframe ID',()=>{for(const data of ['load-page undefined 2340','load-page  2340']){const {frame,loader,receive}=setup();receive({origin:'https://payhip.com',source:frame.contentWindow,data});assert.equal(frame.height,'2340');assert.equal(frame.style.height,'2340px');assert.equal(loader.hidden,true)}});
 test('untrusted or invalid resize messages cannot change frame height',()=>{for(const change of [{origin:'https://evil.test'},{source:{}},{data:'load-page 0 999999'},{data:'load-page 0 javascript:alert(1)'},{data:{height:200}}]){const {frame,receive}=setup();receive({origin:'https://payhip.com',source:frame.contentWindow,data:'load-page 0 200',...change});assert.equal(frame.height,undefined)}});
+
 

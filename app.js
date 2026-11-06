@@ -3,7 +3,7 @@ if(typeof MutationObserver!=='undefined'){
  const normalize=()=>document.querySelectorAll('#guide iframe[id^="payhip_iframe_"]').forEach(frame=>{
   if(frame.dataset.payhipNormalized)return;const url=new URL(frame.src);if(url.origin!=='https://payhip.com')return;
   frame.dataset.payhipNormalized='true';
-  frame.title='Purchase the Tent Boy guide on Payhip';frame.height='1600';frame.style.height='1600px';frame.scrolling='auto';frame.addEventListener('load',()=>document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true));
+  setTimeout(()=>{if(frame.dataset.payhipSized)return;frame.style.setProperty('display','none','important');document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true);const fallback=document.querySelector('.payhip-fallback');if(fallback&&!fallback.querySelector('.payhip-load-note')){const note=document.createElement('span');note.className='payhip-load-note';note.textContent='The book preview could not load. You can still purchase directly on Payhip. ';note.setAttribute('role','status');fallback.prepend(note);}},20000);frame.title='Purchase the Tent Boy guide on Payhip';frame.height='1600';frame.style.height='1600px';frame.scrolling='auto';frame.addEventListener('load',()=>document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true));
  });
  const guide=document.querySelector('#guide');if(guide){new MutationObserver(normalize).observe(guide,{childList:true,subtree:true});normalize();}
 }
@@ -14,7 +14,7 @@ window.addEventListener('message',event=>{
  const match=/^load-page\s+(?:\S+\s+)?(\d+(?:\.\d+)?)$/.exec(event.data.trim());if(!match)return;
  const frame=[...document.querySelectorAll('#guide iframe')].find(f=>f.contentWindow===event.source);if(!frame)return;
  const height=Number(match[1]);if(!Number.isFinite(height)||height<100||height>30000)return;
- frame.height=String(Math.ceil(height));frame.style.height=Math.ceil(height)+'px';frame.title='Purchase the Tent Boy guide on Payhip';
+ frame.dataset.payhipSized='true';frame.style.setProperty('display','block','important');document.querySelector('.payhip-load-note')?.remove();frame.height=String(Math.ceil(height));frame.style.height=Math.ceil(height)+'px';frame.title='Purchase the Tent Boy guide on Payhip';
  document.querySelectorAll('#guide [id^="payhip_loading_"]').forEach(el=>el.hidden=true);
 });
 import {socialIcon} from './social-icons.js';

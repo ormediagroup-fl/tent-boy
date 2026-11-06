@@ -13,3 +13,5 @@ body{overflow-x:clip}
 
 .brand .brand-mark{position:absolute;left:0;top:-6px;width:50px;height:50px;object-fit:contain}.social-links,#social-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center;width:100%}.social-link{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:9px 13px;border:1px solid var(--line);border-radius:30px;text-decoration:none;font-size:13px;font-weight:600}.social-link svg{width:20px;height:20px;flex-shrink:0}.social-link:hover{background:#eae5d9;border-color:#88713f}.social-link:focus-visible{outline:3px solid #88713f;outline-offset:3px}
 
+
+@media(max-width:600px){.brand .brand-mark{width:36px;height:36px;top:-3px}.brand span{white-space:nowrap}}

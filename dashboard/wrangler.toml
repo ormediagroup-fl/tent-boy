@@ -13,12 +13,13 @@ run_worker_first = true
 ADMIN_ORIGIN = "https://tent-boy-admin.orportraits.workers.dev"
 OWNER = "ormediagroup-fl"
 REPO = "tent-boy"
-APP_ID = "REPLACE-APP-ID"
-INSTALLATION_ID = "REPLACE-INSTALLATION-ID"
-OAUTH_CLIENT_ID = "REPLACE-OAUTH-CLIENT-ID"
+APP_ID = "5636223"
+INSTALLATION_ID = "179109895"
+OAUTH_CLIENT_ID = "Ov23liO6D4QORrUyFwpw"
 ALLOWED_USER_ID = "347175880"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "tent-boy-admin"
 database_id = "cc49f879-fcc2-450b-b56b-542dec7ac34a"
+

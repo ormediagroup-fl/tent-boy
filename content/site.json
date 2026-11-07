@@ -50,8 +50,8 @@
       "url": "https://link.amazon/B0gXTrVGe",
       "published": true,
       "featured": false,
-      "image": "",
-      "alt": ""
+      "image": "assets/uploads/e0a807e5-794d-4ef5-a3e4-a9cf4b8997ad.webp",
+      "alt": "T-Sign Photo Backdrop Stand 8x8 ft, Heavy Duty Adjustable Banner Holder | Back Drop Stand for Party, Wedding, and Photography, Portable Photo Booth Backdrop"
     },
     {
       "id": "lighting-1",
@@ -206,5 +206,6 @@
       "label": "TikTok",
       "url": "https://www.tiktok.com/@orportraits"
     }
-  ]
+  ],
+  "posts": []
 }

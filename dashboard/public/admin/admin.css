@@ -3,3 +3,13 @@
 
 .admin-brand-mark{display:inline-block;vertical-align:middle;width:34px;height:34px;margin-right:10px;filter:invert(1);object-fit:contain}
 
+/* Shared image layout: keep these rules in sync with the editor stylesheet. */
+.post-body .post-image{display:block;max-width:100%;margin:28px 0;float:none;box-sizing:border-box}
+.post-body .image-width-small{width:33%}.post-body .image-width-medium{width:50%}.post-body .image-width-large{width:75%}.post-body .image-width-full{width:100%}
+.post-body .image-align-left{margin-left:0;margin-right:auto}.post-body .image-align-center{margin-left:auto;margin-right:auto}.post-body .image-align-right{margin-left:auto;margin-right:0}
+.post-body .post-image img{display:block;width:100%;max-width:100%;height:auto;max-height:none;object-fit:contain}
+.post-body .post-image figcaption{font:400 14px/1.5 system-ui,sans-serif;color:#62615e;margin:10px 0 0;white-space:pre-line;overflow-wrap:anywhere}
+
+.rich-body .post-image{position:relative;cursor:pointer}.rich-body .post-image:focus-visible,.rich-body .post-image.image-selected{outline:3px solid var(--gold);outline-offset:5px}.rich-body .image-edit-button{position:absolute;top:7px;right:7px;min-height:36px;padding:7px 10px;font-size:12px;background:#fff;box-shadow:0 1px 6px #0003}.rich-image-panel{display:block;width:100%;min-width:0;margin:18px 0 28px;padding:18px;border:1px solid var(--gold);border-radius:8px;background:var(--soft);font:14px/1.5 system-ui,sans-serif;cursor:default}.rich-image-panel legend{font-weight:750;padding:0 7px}.image-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.image-settings-grid label{min-width:0;margin:0}.image-settings-grid textarea{min-height:80px}.image-settings-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.remove-image-button{color:#9a2b24}.rich-image-panel[hidden]{display:none!important}@media(max-width:550px){.image-settings-grid{grid-template-columns:1fr}.rich-image-panel{padding:12px}.rich-body .image-edit-button{position:static;margin-top:7px;width:100%;font-size:11px;box-shadow:none}}
+
+

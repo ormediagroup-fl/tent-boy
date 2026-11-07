@@ -1,4 +1,4 @@
-import {validatePosts} from './blog.js';
+import {validatePosts,validTimestamp} from './blog.js';
 export const REQUIRED_DISCLOSURE = 'As an Amazon Associate I earn from qualifying purchases.';
 export function httpsUrl(value, kind = 'social') {
   try {
@@ -40,6 +40,7 @@ export function validate(data) {
   check(!data.guide.cover || !!data.guide.coverAlt?.trim(), 'Guide cover needs descriptive image text.');
   check(Array.isArray(data.socials) && data.socials.length <= 20, 'Maximum 20 social links.');
   for (const s of data.socials || []) check(typeof s.label === 'string' && !!s.label.trim() && httpsUrl(s.url), 'Social links need a label and HTTPS URL.');
+  for(const value of Object.values(data.publication||{}))check(validTimestamp(value),'Invalid page modification timestamp.');
   return [...errors,...validatePosts(data.posts)];
 }
 export function publishedCatalog(data) {

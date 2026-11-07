@@ -40,25 +40,24 @@ test('draft save never changes main; publish checks ancestry and never force pus
  const keys=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);
  const pkcs8=Buffer.from(await crypto.subtle.exportKey('pkcs8',keys.privateKey)).toString('base64');
  const env={ADMIN_ORIGIN:origin,ALLOWED_USER_ID:'123',DB:db({user_id:'123',csrf:'correct'}),OWNER:'owner',REPO:'tent-boy',APP_ID:'1',INSTALLATION_ID:'2',APP_PRIVATE_KEY:`-----BEGIN PRIVATE KEY-----\n${pkcs8}\n-----END PRIVATE KEY-----`};
- const original=globalThis.fetch,calls=[];let draftExists=false,compareStatus='behind';
+ const original=globalThis.fetch,calls=[];let draftExists=false,compareStatus='behind',savedContent=seed;
  globalThis.fetch=async(url,opts={})=>{const p=new URL(url).pathname;calls.push({p,method:opts.method,body:opts.body?JSON.parse(opts.body):null});let value={};let status=200;
  if(p.endsWith('/access_tokens'))value={token:'server-only-token'};
  else if(p.endsWith('/git/ref/heads/main'))value={object:{sha:'main-sha'}};
  else if(p.endsWith('/git/ref/heads/tentboy-cms-draft')){value={object:{sha:'draft-sha'}};if(!draftExists)status=404;}
- else if(p.includes('/contents/content/site.json'))value={content:Buffer.from(JSON.stringify(seed)).toString('base64')};
+ else if(p.includes('/contents/content/site.json'))value={content:Buffer.from(JSON.stringify(new URL(url).searchParams.get('ref')==='draft-sha'?savedContent:seed)).toString('base64')};
  else if(p.includes('/compare/'))value={status:compareStatus};
- else if(p.endsWith('/git/commits/main-sha'))value={tree:{sha:'base-tree'}};
+ else if((p.endsWith('/git/commits/main-sha')||p.endsWith('/git/commits/draft-sha')))value={tree:{sha:'base-tree'}};
  else if(p.endsWith('/git/trees'))value={sha:'new-tree'};
  else if(p.endsWith('/git/commits'))value={sha:'new-commit'};
  return new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json'}});};
  const req=(route,body)=>new Request(origin+'/api/'+route,{method:'POST',headers:{Cookie:'__Host-tentboy=test',Origin:origin,'Content-Type':'application/json','X-CSRF-Token':'correct'},body:JSON.stringify(body)});
  try{
-  const imageMetadata={type:'image',src:'assets/example.webp',alt:'Image description',caption:'Separate visible caption',width:'medium',align:'right'};const draftContent=structuredClone(seed);draftContent.posts=[{id:'image-test',slug:'image-test',title:'Image test',date:'2026-11-07',published:false,excerpt:'',cover:'',body:[{type:'p',spans:[{text:'Post text'}]},imageMetadata]}];let res=await worker.fetch(req('save',{revision:'main-sha',content:draftContent,uploads:[]}),env);const written=JSON.parse(calls.find(c=>c.p.endsWith('/git/trees')).body.tree.find(f=>f.path==='content/site.json').content);assert.deepEqual(written.posts[0].body[1],imageMetadata);assert.equal(res.status,200);assert.ok(calls.some(c=>c.body?.ref==='refs/heads/tentboy-cms-draft'));assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));assert.ok(!(await res.text()).includes('server-only-token'));
+  const imageMetadata={type:'image',src:'assets/example.webp',alt:'Image description',caption:'Separate visible caption',width:'medium',align:'right'};const draftContent=structuredClone(seed);const videoMetadata={type:'video',url:'https://youtu.be/M7lc1UVf-VE',aspectRatio:'9:16',caption:'Video caption'};draftContent.posts=[{id:'image-test',slug:'image-test',title:'Image test',date:'2026-11-07',published:true,excerpt:'',cover:'',body:[{type:'p',spans:[{text:'Post text'}]},imageMetadata,videoMetadata]}];let res=await worker.fetch(req('save',{revision:'main-sha',content:draftContent,uploads:[]}),env);const written=JSON.parse(calls.find(c=>c.p.endsWith('/git/trees')).body.tree.find(f=>f.path==='content/site.json').content);savedContent=written;assert.deepEqual(written.posts[0].body[1],imageMetadata);assert.deepEqual(written.posts[0].body[2],videoMetadata);assert.equal(res.status,200);assert.ok(calls.some(c=>c.body?.ref==='refs/heads/tentboy-cms-draft'));assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));assert.ok(!(await res.text()).includes('server-only-token'));
   draftExists=true;res=await worker.fetch(req('save',{revision:'outdated',content:seed}),env);assert.equal(res.status,409);
   res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,409);assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));
-  compareStatus='ahead';res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,200);assert.deepEqual(calls.find(c=>c.p.endsWith('/git/refs/heads/main')).body,{sha:'draft-sha',force:false});
+  compareStatus='ahead';res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,200);assert.deepEqual(calls.find(c=>c.p.endsWith('/git/refs/heads/main')).body,{sha:'new-commit',force:false});const published=JSON.parse(calls.filter(c=>c.p.endsWith('/git/trees')).at(-1).body.tree[0].content);assert.ok(published.posts[0].publishedAt);assert.equal(published.posts[0].modifiedAt,published.posts[0].publishedAt);assert.deepEqual(published.posts[0].body[2],videoMetadata);
  }finally{globalThis.fetch=original;}
 });
 
 test('current website content is valid',async()=>{const current=JSON.parse(await fs.readFile(new URL('../content/site.json',import.meta.url)));assert.deepEqual(validate(current),[]);});
-

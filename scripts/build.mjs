@@ -1,5 +1,6 @@
 import {blogPage} from '../blog-view.js';
-import {escapeHTML} from '../content/blog.js';
+import {sitemapXML,stampPublication} from '../content/blog.js';
+import {execFileSync} from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createRequire} from 'node:module';
@@ -9,7 +10,16 @@ const require=createRequire(import.meta.url);
 const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 if(path.resolve(process.cwd())!==path.resolve(projectRoot))throw Error('Run the build from the website project root.');
 const sharp=process.env.SHARP_MODULE?require(process.env.SHARP_MODULE):require('sharp');
-const data=JSON.parse(await fs.readFile('content/site.json','utf8')),errors=validate(data);if(errors.length)throw Error(errors.join('\n'));
+let data=JSON.parse(await fs.readFile('content/site.json','utf8')),errors=validate(data);if(errors.length)throw Error(errors.join('\n'));
+// Full checkout history recovers legacy lastmod from persisted Git commit dates.
+// No history (e.g. source ZIP/local QA): omit unknown dates, never use build time.
+try{
+ const entries=execFileSync('git',['log','--reverse','--format=%H %cI','--','content/site.json'],{cwd:projectRoot,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim().split('\n').filter(Boolean);
+ let prior={posts:[],products:[],categories:[],socials:[]};
+ for(const line of entries){const [sha,date]=line.trim().split(' ');const snapshot=JSON.parse(execFileSync('git',['show',sha+':content/site.json'],{cwd:projectRoot,encoding:'utf8',maxBuffer:2000000}));prior=stampPublication(prior,snapshot,new Date(date).toISOString());}
+ const known=new Map((prior.posts||[]).map(p=>[p.id,p])),latest=(a,b)=>!a?b:!b?a:a>b?a:b;
+ data={...data,publication:{homeModifiedAt:latest(prior.publication?.homeModifiedAt,data.publication?.homeModifiedAt),blogModifiedAt:latest(prior.publication?.blogModifiedAt,data.publication?.blogModifiedAt)},posts:(data.posts||[]).map(p=>({...p,...(known.get(p.id)?.publishedAt&&!p.publishedAt?{publishedAt:known.get(p.id).publishedAt}:{}),...(latest(p.modifiedAt,known.get(p.id)?.modifiedAt)?{modifiedAt:latest(p.modifiedAt,known.get(p.id)?.modifiedAt)}:{})}))};
+}catch{/* Optional history is unavailable; legacy dates remain unknown. */}
 const out=path.resolve(projectRoot,'dist');if(path.dirname(out)!==path.resolve(projectRoot))throw Error('Invalid build target.');await fs.mkdir(out,{recursive:true});
 // Keep OneDrive's directory handles intact while removing every old artifact file.
 async function clearFiles(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const file=path.resolve(dir,entry.name);if(!file.startsWith(out+path.sep)||entry.isSymbolicLink())throw Error('Unsafe build artifact path.');if(entry.isDirectory())await clearFiles(file);else await fs.unlink(file);}}
@@ -35,8 +45,7 @@ for(const f of ['blog-view.js','blog-preview.js','blog.css'])await fs.copyFile(f
 await fs.writeFile(`${preview}/blog.html`,'<!doctype html><meta name=viewport content=width=device-width,initial-scale=1><link rel=stylesheet href=/preview/styles.css><link rel=stylesheet href=/preview/blog.css><main class="wrap blog-main"></main><script type=module src=/preview/blog-preview.js></script>');
 await fs.mkdir(`${out}/blog`,{recursive:true});await fs.writeFile(`${out}/blog/index.html`,blogPage(d.posts||[],null,d.socials));for(const p of d.posts||[]){await fs.mkdir(`${out}/blog/${p.slug}`,{recursive:true});await fs.writeFile(`${out}/blog/${p.slug}/index.html`,blogPage(d.posts,p,d.socials));}
 console.log(`Built ${d.products.length} products in ${d.categories.length} categories.`);
-const urls=['https://tentboy.orportraits.com/','https://tentboy.orportraits.com/blog/',...(d.posts||[]).map(p=>'https://tentboy.orportraits.com/blog/'+p.slug+'/')];
-await fs.writeFile(`${out}/sitemap.xml`,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(url=>'<url><loc>'+escapeHTML(url)+'</loc></url>').join('')+'</urlset>\n');
+await fs.writeFile(`${out}/sitemap.xml`,sitemapXML(d));
 await fs.writeFile(`${out}/robots.txt`, 'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://tentboy.orportraits.com/sitemap.xml\n');
 
 

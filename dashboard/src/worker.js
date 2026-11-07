@@ -1,3 +1,4 @@
+import {stampPublication} from '../../content/blog.js';
 import {validate,imagePath} from '../../content/schema.js';
 const encoder=new TextEncoder();
 const b64=bytes=>btoa(String.fromCharCode(...bytes));
@@ -74,9 +75,18 @@ export async function handle(req,env){
    return json({revision:next.sha,hasDraft:true});
   }
   if(url.pathname==='/api/publish'&&req.method==='POST'){
-   if(!draftHead||draftHead===main)fail('Save a draft before publishing.');const errors=validate(await readContent(token,env,revision));if(errors.length)fail(errors.join('\n'));
+   if(!draftHead||draftHead===main)fail('Save a draft before publishing.');const draftContent=await readContent(token,env,revision);const errors=validate(draftContent);if(errors.length)fail(errors.join('\n'));
    const compare=await github(token,`${base}/compare/${main}...${revision}`);if(compare.status!=='ahead')fail('The website changed since this draft began. Follow draft recovery instructions before publishing.',409);
-   await github(token,`${base}/git/refs/heads/main`,{sha:revision,force:false},'PATCH');return json({ok:true,revision,buildUrl:`https://github.com/${env.OWNER}/${env.REPO}/actions`});
+   const published=stampPublication(await readContent(token,env,main),draftContent,new Date().toISOString());
+   let publishRevision=revision;
+   if(JSON.stringify(published)!==JSON.stringify(draftContent)){
+    const commit=await github(token,`${base}/git/commits/${revision}`);
+    const tree=await github(token,`${base}/git/trees`,{base_tree:commit.tree.sha,tree:[{path:'content/site.json',mode:'100644',type:'blob',content:JSON.stringify(published,null,2)+'\n'}]});
+    const next=await github(token,`${base}/git/commits`,{message:'Record Tent Boy publication dates',tree:tree.sha,parents:[revision]});
+    await github(token,`${base}/git/refs/heads/${draft}`,{sha:next.sha,force:false},'PATCH');publishRevision=next.sha;
+   }
+   // The installation token creates a push event; GITHUB_TOKEN would suppress it.
+   await github(token,`${base}/git/refs/heads/main`,{sha:publishRevision,force:false},'PATCH');return json({ok:true,revision:publishRevision,buildUrl:`https://github.com/${env.OWNER}/${env.REPO}/actions`});
   }
   if(url.pathname==='/api/discard'&&req.method==='POST'){if(draftHead)await github(token,`${base}/git/refs/heads/${draft}`,{sha:main,force:true},'PATCH');return json({ok:true});}
   fail('Not found.',404);
@@ -85,4 +95,4 @@ export async function handle(req,env){
  if(url.pathname==='/' )return Response.redirect(`${origin}/admin/`,302);
  return env.ASSETS.fetch(req);
 }
-export default {async fetch(req,env){let response;try{response=await handle(req,env);}catch(e){response=json({error:e.status?e.message:'Service unavailable. Check server configuration.'},e.status||503);}const headers=new Headers(response.headers);headers.set('X-Content-Type-Options','nosniff');headers.set('Referrer-Policy','no-referrer');headers.set('X-Frame-Options','SAMEORIGIN');headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self'; frame-src 'self'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'");return new Response(response.body,{status:response.status,headers});}};
+export default {async fetch(req,env){let response;try{response=await handle(req,env);}catch(e){response=json({error:e.status?e.message:'Service unavailable. Check server configuration.'},e.status||503);}const headers=new Headers(response.headers);headers.set('X-Content-Type-Options','nosniff');headers.set('Referrer-Policy','no-referrer');headers.set('X-Frame-Options','SAMEORIGIN');headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self'; frame-src 'self' https://www.youtube-nocookie.com; frame-ancestors 'self'; form-action 'self'; base-uri 'self'");return new Response(response.body,{status:response.status,headers});}};

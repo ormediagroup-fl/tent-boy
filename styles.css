@@ -18,3 +18,4 @@ body{overflow-x:clip}
 
 .guide-embed-section.wrap{display:block;width:min(670px,calc(100% - 36px));max-width:670px;padding:70px 0}.guide-embed-section iframe{width:100%;max-width:100%}.guide-embed-section [id^="payhip_loading_"] img{width:24px;height:24px}.payhip-fallback{font-size:13px;margin:22px 0 0;color:var(--muted)}.payhip-fallback a{text-underline-offset:3px}
 
+.product-image-placeholder{display:grid;place-items:center;min-height:150px;padding:24px;box-sizing:border-box;font:14px/1.5 system-ui,sans-serif;color:#53594e;background:#e9e7dc;text-align:center}

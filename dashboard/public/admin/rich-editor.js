@@ -1,4 +1,4 @@
-import {renderBody,safeLink,IMAGE_WIDTHS,IMAGE_ALIGNMENTS} from '/blog.js';
+import {renderBody,safeLink,IMAGE_WIDTHS,IMAGE_ALIGNMENTS,youtubeId,VIDEO_RATIOS} from '/blog.js';
 
 // Only this structured model is saved. Editor controls and HTML are never stored.
 export function readImage(img,figure=img.closest?.('figure')){
@@ -11,7 +11,7 @@ export function readBody(root){
  const blocks=[];
  function spans(el,marks={}){const out=[];for(const n of el.childNodes){if(n.nodeType===3){if(n.textContent)out.push({text:n.textContent,...marks});continue;}if(n.nodeType!==1)continue;const tag=n.tagName.toLowerCase(),m={...marks};if(['script','style','iframe','object'].includes(tag))continue;if(['strong','b'].includes(tag))m.bold=true;if(['em','i'].includes(tag))m.italic=true;if(tag==='u')m.underline=true;if(tag==='a'&&safeLink(n.getAttribute('href')))m.href=n.getAttribute('href');if(tag==='br')out.push({text:'\n',...m});else out.push(...spans(n,m));}return out;}
  function font(el){const f=(el.getAttribute?.('face')||el.style?.fontFamily||'').toLowerCase();if(f.includes('georgia'))return 'serif';if(f.includes('monospace'))return 'mono';for(const cls of ['sans','serif','mono'])if(el.classList?.contains('font-'+cls))return cls;const child=el.querySelector?.('font[face]');return child?font(child):'sans';}
- function walk(el){let inline=[];const flush=()=>{if(inline.length){blocks.push({type:'p',spans:inline,font:'sans'});inline=[];}};for(const n of el.childNodes){if(n.nodeType===3){if(n.textContent)inline.push({text:n.textContent});continue;}if(n.nodeType!==1)continue;if(n.dataset.imageControls!==undefined)continue;const tag=n.tagName.toLowerCase();if(['script','style','iframe','object'].includes(tag))continue;if(tag==='img'){flush();if(n.dataset.asset)blocks.push(readImage(n));continue;}if(tag==='figure'){flush();const img=n.querySelector('img');if(img?.dataset.asset)blocks.push(readImage(img,n));continue;}if(['ul','ol'].includes(tag)){flush();blocks.push({type:tag,font:font(n),items:[...n.children].filter(x=>x.tagName==='LI').map(x=>spans(x))});continue;}if(['p','h2','h3','blockquote'].includes(tag)){flush();blocks.push({type:tag,font:font(n),spans:spans(n)});continue;}if(tag==='div'){flush();walk(n);continue;}inline.push(...spans({childNodes:[n]}));}flush();}
+ function walk(el){let inline=[];const flush=()=>{if(inline.length){blocks.push({type:'p',spans:inline,font:'sans'});inline=[];}};for(const n of el.childNodes){if(n.nodeType===3){if(n.textContent)inline.push({text:n.textContent});continue;}if(n.nodeType!==1)continue;if(n.dataset.imageControls!==undefined)continue;const tag=n.tagName.toLowerCase();if(['script','style','iframe','object'].includes(tag))continue;if(tag==='img'){flush();if(n.dataset.asset)blocks.push(readImage(n));continue;}if(tag==='figure'){flush();if(n.dataset.videoUrl){blocks.push({type:'video',url:n.dataset.videoUrl,aspectRatio:VIDEO_RATIOS.includes(n.dataset.videoRatio)?n.dataset.videoRatio:'16:9',caption:n.querySelector('figcaption')?.textContent||''});continue;}const img=n.querySelector('img');if(img?.dataset.asset)blocks.push(readImage(img,n));continue;}if(['ul','ol'].includes(tag)){flush();blocks.push({type:tag,font:font(n),items:[...n.children].filter(x=>x.tagName==='LI').map(x=>spans(x))});continue;}if(['p','h2','h3','blockquote'].includes(tag)){flush();blocks.push({type:tag,font:font(n),spans:spans(n)});continue;}if(tag==='div'){flush();walk(n);continue;}inline.push(...spans({childNodes:[n]}));}flush();}
  walk(root);return blocks;
 }
 
@@ -62,7 +62,7 @@ export function richEditor(parent,post,{changed,upload,resolveImage,onError}){
  body.addEventListener('keydown',e=>{if(e.target.matches('figure.post-image')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();selectImage(e.target,true);}else if(e.key==='Escape'&&!panel.contains(e.target))deselect();});
  body.addEventListener('keyup',remember);body.addEventListener('mouseup',remember);body.addEventListener('touchend',remember);document.addEventListener('selectionchange',remember,{signal:controller.signal});
  function command(cmd,value){
-  if(cmd==='undo'&&imageUndo){const snapshot=imageUndo,node=snapshot.clone.cloneNode(true);body.insertBefore(node,snapshot.next?.parentNode===body?snapshot.next:null);prepareFigures();sync();imageRedo={...snapshot,node};return;}
+  if(cmd==='undo'&&imageUndo){const snapshot=imageUndo,node=snapshot.clone.cloneNode(true);body.insertBefore(node,snapshot.next?.parentNode===body?snapshot.next:null);prepareFigures();prepareVideos();sync();imageRedo={...snapshot,node};return;}
   if(cmd==='redo'&&imageRedo){const snapshot=imageRedo;snapshot.node.remove();sync();imageUndo={clone:snapshot.clone,next:snapshot.next};return;}
   focus();document.execCommand(cmd,false,value);prepareFigures();if(selected&&!selected.isConnected)deselect();sync();}
  function button(label,fn){const b=plainButton(tools,label,fn);b.onmousedown=e=>e.preventDefault();}
@@ -70,6 +70,24 @@ export function richEditor(parent,post,{changed,upload,resolveImage,onError}){
  function select(label,options,cmd){const l=document.createElement('label');l.textContent=label;const s=document.createElement('select');for(const [text,value]of options){const o=document.createElement('option');o.textContent=text;o.value=value;s.append(o);}s.onchange=()=>command(cmd,s.value);l.append(s);tools.append(l);}
  select('Text style',[['Paragraph','p'],['Heading','h2'],['Subheading','h3'],['Quote','blockquote']],'formatBlock');
  select('Font',[['Sans serif','Arial'],['Serif','Georgia'],['Monospace','monospace']],'fontName');
+ const videoPanel=document.createElement('fieldset');videoPanel.className='rich-video-panel';videoPanel.hidden=true;
+ const vl=document.createElement('legend');vl.textContent='YouTube video';videoPanel.append(vl);
+ function videoField(label,tag){const l=document.createElement('label');l.textContent=label;const i=document.createElement(tag);i.setAttribute('aria-label',label);l.append(i);videoPanel.append(l);return i;}
+ const videoURL=videoField('YouTube URL','input');videoURL.type='url';videoURL.maxLength=2048;
+ const videoRatio=videoField('Video aspect ratio','select');for(const r of VIDEO_RATIOS){const o=document.createElement('option');o.value=r;o.textContent=r==='16:9'?'16:9 — landscape':'9:16 — portrait / Shorts';videoRatio.append(o);}
+ const videoCaption=videoField('Video caption (optional)','textarea');videoCaption.maxLength=2000;videoCaption.rows=2;
+ const videoError=document.createElement('p');videoError.setAttribute('role','alert');videoPanel.append(videoError);
+ let selectedVideo=null;
+ function videoClose(){videoPanel.hidden=true;const f=selectedVideo;selectedVideo=null;if(f?.isConnected)f.focus();else body.focus();}
+ function editVideo(f){remember();deselect();selectedVideo=f;videoURL.value=f?.dataset.videoUrl||'';videoRatio.value=f?.dataset.videoRatio||'16:9';videoCaption.value=f?.querySelector('figcaption')?.textContent||'';videoError.textContent='';videoPanel.hidden=false;videoURL.focus();}
+ function prepareVideos(){for(const f of body.querySelectorAll('figure.post-video')){f.contentEditable='false';f.tabIndex=0;f.setAttribute('role','group');f.setAttribute('aria-label','YouTube video. Press Enter to edit.');let b=f.querySelector('.video-edit-button');if(!b){b=plainButton(f,'Edit video',()=>editVideo(f));b.className='video-edit-button';}b.onclick=()=>editVideo(f);}}
+ function insertVideo(f){focus();const sel=window.getSelection();if(sel.rangeCount&&body.contains(sel.anchorNode)&&!panel.contains(sel.anchorNode)){const r=sel.getRangeAt(0);let a=r.startContainer;if(a===body)body.insertBefore(f,body.childNodes[r.startOffset]||null);else{while(a.parentNode!==body)a=a.parentNode;if(['P','H2','H3','BLOCKQUOTE','UL','OL','DIV'].includes(a.tagName)&&a.contains(r.startContainer)){const after=r.cloneRange();after.setEndAfter(a);const tail=after.extractContents();a.after(f);f.after(tail);}else a.after(f);}}else body.append(f);if(!f.nextSibling)body.append(document.createElement('p'));}
+ plainButton(videoPanel,'Apply video',()=>{if(!youtubeId(videoURL.value.trim())){videoError.textContent='Enter a valid HTTPS YouTube watch, Shorts or youtu.be link.';videoURL.focus();return;}const holder=document.createElement('div');holder.innerHTML=renderBody([{type:'video',url:videoURL.value.trim(),aspectRatio:videoRatio.value,caption:videoCaption.value}]);const f=holder.firstElementChild;if(selectedVideo?.isConnected)selectedVideo.replaceWith(f);else insertVideo(f);selectedVideo=f;prepareVideos();sync();videoClose();});
+ plainButton(videoPanel,'Cancel video editing',videoClose);
+ plainButton(videoPanel,'Remove video',()=>{if(!selectedVideo?.isConnected){videoClose();return;}const f=selectedVideo;videoClose();const snapshot={clone:f.cloneNode(true),next:f.nextSibling};f.remove();range=null;sync();imageUndo=snapshot;body.focus();});
+ videoPanel.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();videoClose();}});
+ body.addEventListener('keydown',e=>{if(e.target.matches('figure.post-video')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();editVideo(e.target);}});
+ button('Add Video',()=>editVideo(null));
  button('Link',()=>{const value=prompt('Enter the full HTTPS link:','https://');if(value===null)return;if(!safeLink(value)){onError('Enter a valid HTTPS link.');return;}command('createLink',value);});button('Remove link',()=>command('unlink'));
  const file=document.createElement('input');file.type='file';file.accept='image/jpeg,image/png,image/webp';file.hidden=true;button('Add photo',()=>file.click());
  file.onchange=async()=>{try{if(!file.files[0])return;const description='';const {path,url}=await upload(file.files[0]);focus();const figure=document.createElement('figure'),img=document.createElement('img');figure.className='post-image image-width-full image-align-center';figure.dataset.imageWidth='full';figure.dataset.imageAlign='center';img.dataset.asset=path;img.src=url;img.alt=description;figure.append(img);const s=window.getSelection();if(s.rangeCount&&s.anchorNode!==body&&body.contains(s.anchorNode)&&!panel.contains(s.anchorNode)){let anchor=s.anchorNode;while(anchor.parentNode!==body)anchor=anchor.parentNode;anchor.after(figure);}else body.append(figure);body.append(document.createElement('p'));prepareFigures();sync();selectImage(figure,true);alt.focus();}catch(e){onError(e.message);}finally{file.value='';}};
@@ -77,8 +95,7 @@ export function richEditor(parent,post,{changed,upload,resolveImage,onError}){
  body.onpaste=e=>{if(panel.contains(e.target))return;e.preventDefault();command('insertText',e.clipboardData.getData('text/plain'));};
  body.addEventListener('input',e=>{if(panel.contains(e.target))return;prepareFigures();if(selected&&!selected.isConnected)deselect();sync();});
  const imageHelp=document.createElement('p');imageHelp.className='help';imageHelp.textContent='Tap a photo or choose Edit image to change its caption, size, alignment or alt text. Keyboard: Tab to a photo, Enter to edit, Escape to return.';
- parent.append(tools,imageHelp,body,file);prepareFigures();
+ parent.append(tools,videoPanel,imageHelp,body,file);prepareFigures();prepareVideos();
 }
 let controller=new AbortController();
 export function resetEditor(){controller.abort();controller=new AbortController();}
-

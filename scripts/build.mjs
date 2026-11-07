@@ -1,3 +1,4 @@
+import {contactPage} from '../contact-view.js';
 import {blogPage} from '../blog-view.js';
 import {sitemapXML,stampPublication} from '../content/blog.js';
 import {execFileSync} from 'node:child_process';
@@ -23,7 +24,7 @@ try{
 const out=path.resolve(projectRoot,'dist');if(path.dirname(out)!==path.resolve(projectRoot))throw Error('Invalid build target.');await fs.mkdir(out,{recursive:true});
 // Keep OneDrive's directory handles intact while removing every old artifact file.
 async function clearFiles(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const file=path.resolve(dir,entry.name);if(!file.startsWith(out+path.sep)||entry.isSymbolicLink())throw Error('Unsafe build artifact path.');if(entry.isDirectory())await clearFiles(file);else await fs.unlink(file);}}
-await clearFiles(out);for(const name of ['index.html','styles.css','app.js','analytics.js','social-icons.js','blog.css','.nojekyll'])await fs.copyFile(name,`${out}/${name}`);
+await clearFiles(out);for(const name of ['index.html','styles.css','app.js','analytics.js','social-icons.js','blog.css','contact.css','contact.js','contact-form.js','.nojekyll'])await fs.copyFile(name,`${out}/${name}`);
 await fs.mkdir(`${out}/content`,{recursive:true});await fs.copyFile('content/schema.js',`${out}/content/schema.js`);await fs.copyFile('content/blog.js',`${out}/content/blog.js`);const d=publicContent(data);
 const assets=new Set(['assets/favicon.svg','assets/tent-boy-mark.svg','assets/04-finished-fall-set.jpg','assets/08-about-tent-boy-selfie.jpg',...(d.posts||[]).flatMap(p=>[p.cover,...p.body.filter(b=>b.type==='image').map(b=>b.src)]),data.home.heroImage,...d.products.map(p=>p.image),...(data.guide.visible?[data.guide.cover]:[])].filter(Boolean)),mapped=new Map();
 for(const file of assets){await fs.mkdir(path.dirname(`${out}/${file}`),{recursive:true});if(file.endsWith('.svg')){await fs.copyFile(file,`${out}/${file}`);continue;}const webp=file.replace(/\.[^.]+$/,'.webp');await sharp(file,{limitInputPixels:40000000}).rotate().resize({width:1600,height:1600,fit:'inside',withoutEnlargement:true}).webp({quality:82}).toFile(`${out}/${webp}`);mapped.set(file,webp);}
@@ -40,10 +41,15 @@ await fs.writeFile(`${out}/index.html`,html);await fs.writeFile(`${out}/content/
 const origin=process.env.ADMIN_ORIGIN||'';if(origin&&(new URL(origin).origin!==origin||!origin.startsWith('https://')||/[<>"']/.test(origin)))throw Error('ADMIN_ORIGIN must be an HTTPS origin, no trailing slash');
 await fs.mkdir(`${out}/admin`,{recursive:true});await fs.writeFile(`${out}/admin/index.html`,origin?`<!doctype html><meta name="viewport" content="width=device-width"><title>Tent Boy Admin</title><meta http-equiv="refresh" content="0;url=${origin}/admin/"><a href="${origin}/admin/">Open secure Tent Boy dashboard</a>`:'<!doctype html><meta name="viewport" content="width=device-width"><title>Tent Boy Admin</title><h1>Admin setup pending</h1><p>The secure dashboard has not been connected yet. See ADMIN-SETUP.md.</p>');
 const preview='dashboard/public/preview';await fs.mkdir(`${preview}/content`,{recursive:true});for(const file of ['index.html','styles.css','app.js','analytics.js','social-icons.js'])await fs.copyFile(file,`${preview}/${file}`);await fs.copyFile('content/schema.js',`${preview}/content/schema.js`);await fs.copyFile('content/blog.js',`${preview}/content/blog.js`);await fs.cp('assets',`${preview}/assets`,{recursive:true});
+// Dashboard previews open Contact on the public site, outside the private iframe.
+const previewIndex=await fs.readFile(`${preview}/index.html`,'utf8');await fs.writeFile(`${preview}/index.html`,previewIndex.replaceAll('href="/contact/"','href="https://tentboy.orportraits.com/contact/" target="_blank" rel="noopener noreferrer"'));
 await fs.copyFile('content/schema.js','dashboard/public/schema.js');await fs.copyFile('content/blog.js','dashboard/public/blog.js');
 for(const f of ['blog-view.js','blog-preview.js','blog.css'])await fs.copyFile(f,`${preview}/${f}`);
 await fs.writeFile(`${preview}/blog.html`,'<!doctype html><meta name=viewport content=width=device-width,initial-scale=1><link rel=stylesheet href=/preview/styles.css><link rel=stylesheet href=/preview/blog.css><main class="wrap blog-main"></main><script type=module src=/preview/blog-preview.js></script>');
 await fs.mkdir(`${out}/blog`,{recursive:true});await fs.writeFile(`${out}/blog/index.html`,blogPage(d.posts||[],null,d.socials));for(const p of d.posts||[]){await fs.mkdir(`${out}/blog/${p.slug}`,{recursive:true});await fs.writeFile(`${out}/blog/${p.slug}/index.html`,blogPage(d.posts,p,d.socials));}
+const contactConfig=JSON.parse(await fs.readFile('content/contact-config.json','utf8'));
+const atlasEndpoint=process.env.ATLAS_FORM_ENDPOINT||contactConfig.atlasEndpoint||'';
+for(const [slug,thankYou] of [['contact',false],['thank-you',true]]){await fs.mkdir(`${out}/${slug}`,{recursive:true});await fs.writeFile(`${out}/${slug}/index.html`,contactPage({socials:d.socials,guide:d.guide,endpoint:atlasEndpoint,thankYou}));}
 console.log(`Built ${d.products.length} products in ${d.categories.length} categories.`);
 await fs.writeFile(`${out}/sitemap.xml`,sitemapXML(d));
 await fs.writeFile(`${out}/robots.txt`, 'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: https://tentboy.orportraits.com/sitemap.xml\n');

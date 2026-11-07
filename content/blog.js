@@ -80,6 +80,6 @@ export function stampPublication(previous,next,now){
 }
 export function sitemapXML(data){
  const base='https://tentboy.orportraits.com';
- const urls=[['/',data.publication?.homeModifiedAt],['/blog/',data.publication?.blogModifiedAt],...sortedPosts(data.posts||[]).map(p=>['/blog/'+p.slug+'/',p.modifiedAt||p.publishedAt])];
+ const urls=[['/',data.publication?.homeModifiedAt],['/blog/',data.publication?.blogModifiedAt],['/contact/',undefined],...sortedPosts(data.posts||[]).map(p=>['/blog/'+p.slug+'/',p.modifiedAt||p.publishedAt])];
  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(([path,date])=>'<url><loc>'+escapeHTML(base+path)+'</loc>'+(validTimestamp(date)?'<lastmod>'+date+'</lastmod>':'')+'</url>').join('')+'</urlset>\n';
 }

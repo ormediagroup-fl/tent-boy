@@ -24,6 +24,7 @@ jobs:
       - run: npm run build
         env:
           ADMIN_ORIGIN: ${{ vars.ADMIN_ORIGIN }}
+          ATLAS_FORM_ENDPOINT: ${{ vars.ATLAS_FORM_ENDPOINT }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

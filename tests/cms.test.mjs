@@ -53,7 +53,7 @@ test('draft save never changes main; publish checks ancestry and never force pus
  return new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json'}});};
  const req=(route,body)=>new Request(origin+'/api/'+route,{method:'POST',headers:{Cookie:'__Host-tentboy=test',Origin:origin,'Content-Type':'application/json','X-CSRF-Token':'correct'},body:JSON.stringify(body)});
  try{
-  let res=await worker.fetch(req('save',{revision:'main-sha',content:seed,uploads:[]}),env);assert.equal(res.status,200);assert.ok(calls.some(c=>c.body?.ref==='refs/heads/tentboy-cms-draft'));assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));assert.ok(!(await res.text()).includes('server-only-token'));
+  const imageMetadata={type:'image',src:'assets/example.webp',alt:'Image description',caption:'Separate visible caption',width:'medium',align:'right'};const draftContent=structuredClone(seed);draftContent.posts=[{id:'image-test',slug:'image-test',title:'Image test',date:'2026-11-07',published:false,excerpt:'',cover:'',body:[{type:'p',spans:[{text:'Post text'}]},imageMetadata]}];let res=await worker.fetch(req('save',{revision:'main-sha',content:draftContent,uploads:[]}),env);const written=JSON.parse(calls.find(c=>c.p.endsWith('/git/trees')).body.tree.find(f=>f.path==='content/site.json').content);assert.deepEqual(written.posts[0].body[1],imageMetadata);assert.equal(res.status,200);assert.ok(calls.some(c=>c.body?.ref==='refs/heads/tentboy-cms-draft'));assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));assert.ok(!(await res.text()).includes('server-only-token'));
   draftExists=true;res=await worker.fetch(req('save',{revision:'outdated',content:seed}),env);assert.equal(res.status,409);
   res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,409);assert.ok(!calls.some(c=>c.p.endsWith('/git/refs/heads/main')));
   compareStatus='ahead';res=await worker.fetch(req('publish',{revision:'draft-sha'}),env);assert.equal(res.status,200);assert.deepEqual(calls.find(c=>c.p.endsWith('/git/refs/heads/main')).body,{sha:'draft-sha',force:false});
@@ -61,3 +61,4 @@ test('draft save never changes main; publish checks ancestry and never force pus
 });
 
 test('current website content is valid',async()=>{const current=JSON.parse(await fs.readFile(new URL('../content/site.json',import.meta.url)));assert.deepEqual(validate(current),[]);});
+

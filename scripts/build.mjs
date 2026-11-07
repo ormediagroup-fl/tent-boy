@@ -47,7 +47,8 @@ await fs.copyFile('content/schema.js','dashboard/public/schema.js');await fs.cop
 for(const f of ['blog-view.js','blog-preview.js','blog.css'])await fs.copyFile(f,`${preview}/${f}`);
 await fs.writeFile(`${preview}/blog.html`,'<!doctype html><meta name=viewport content=width=device-width,initial-scale=1><link rel=stylesheet href=/preview/styles.css><link rel=stylesheet href=/preview/blog.css><main class="wrap blog-main"></main><script type=module src=/preview/blog-preview.js></script>');
 await fs.mkdir(`${out}/blog`,{recursive:true});await fs.writeFile(`${out}/blog/index.html`,blogPage(d.posts||[],null,d.socials));for(const p of d.posts||[]){await fs.mkdir(`${out}/blog/${p.slug}`,{recursive:true});await fs.writeFile(`${out}/blog/${p.slug}/index.html`,blogPage(d.posts,p,d.socials));}
-const atlasEndpoint=process.env.ATLAS_FORM_ENDPOINT||'';
+const contactConfig=JSON.parse(await fs.readFile('content/contact-config.json','utf8'));
+const atlasEndpoint=process.env.ATLAS_FORM_ENDPOINT||contactConfig.atlasEndpoint||'';
 for(const [slug,thankYou] of [['contact',false],['thank-you',true]]){await fs.mkdir(`${out}/${slug}`,{recursive:true});await fs.writeFile(`${out}/${slug}/index.html`,contactPage({socials:d.socials,guide:d.guide,endpoint:atlasEndpoint,thankYou}));}
 console.log(`Built ${d.products.length} products in ${d.categories.length} categories.`);
 await fs.writeFile(`${out}/sitemap.xml`,sitemapXML(d));

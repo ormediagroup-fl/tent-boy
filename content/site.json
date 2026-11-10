@@ -226,6 +226,17 @@
         {
           "type": "p",
           "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "video",
+          "url": "https://youtu.be/PivFvyD_IVo",
+          "aspectRatio": "16:9",
+          "caption": ""
+        },
+        {
+          "type": "p",
+          "font": "sans",
           "spans": [
             {
               "text": "Running a pop-up portrait studio at a local market is a great way to introduce your photography business to people in your community. But when someone walks up to your canopy and wants a photo session, you need a quick and easy way to get them booked, collect payment, and get them in front of your camera"

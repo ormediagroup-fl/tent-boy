@@ -266,7 +266,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "The answer? I use [Session](https://usesession.com)."
+              "text": "The answer? I use "
+            },
+            {
+              "text": "Session",
+              "href": "https://usesession.com"
+            },
+            {
+              "text": "."
             }
           ]
         },
@@ -302,7 +309,21 @@
           "font": "sans",
           "spans": [
             {
-              "text": "After logging into Session, navigate to **Manage → Contracts** and select **New Contract**."
+              "text": "After logging into Session, navigate to "
+            },
+            {
+              "text": "Manage → Contracts ",
+              "bold": true
+            },
+            {
+              "text": "and select "
+            },
+            {
+              "text": "New Contract",
+              "bold": true
+            },
+            {
+              "text": "."
             }
           ]
         },
@@ -347,7 +368,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "**A quick note about contracts:** I'm not sharing my actual contract language because legal requirements can vary depending on where you operate. Find a contract appropriate for your business and have a qualified attorney review it."
+              "text": "*"
+            },
+            {
+              "text": "A quick note about contracts:",
+              "bold": true
+            },
+            {
+              "text": " I'm not sharing my actual contract language because legal requirements can vary depending on where you operate. Find a contract appropriate for your business and have a qualified attorney review it."
             }
           ]
         },
@@ -374,7 +402,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "Next, head to **Manage → Questionnaires** and create a new questionnaire."
+              "text": "Next, head to "
+            },
+            {
+              "text": "Manage → Questionnaires",
+              "bold": true
+            },
+            {
+              "text": " and create a new questionnaire."
             }
           ]
         },
@@ -449,7 +484,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "Now head to **Session Types → Create a New Session**."
+              "text": "Now head to "
+            },
+            {
+              "text": "Session Types → Create a New Session",
+              "bold": true
+            },
+            {
+              "text": "."
             }
           ]
         },
@@ -588,7 +630,11 @@
           "font": "sans",
           "spans": [
             {
-              "text": "I also explain my special offer: **The $25 session fee can be applied toward a future full-price family portrait session with me.**"
+              "text": "I also explain my special offer: "
+            },
+            {
+              "text": "The $25 session fee can be applied toward a future full-price family portrait session with me.",
+              "bold": true
             }
           ]
         },
@@ -615,7 +661,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "Under **Packages and Fees**, I choose to collect the entire session fee during booking."
+              "text": "Under "
+            },
+            {
+              "text": "Packages and Fees",
+              "bold": true
+            },
+            {
+              "text": ", I choose to collect the entire session fee during booking."
             }
           ]
         },
@@ -1005,7 +1058,14 @@
           "font": "sans",
           "spans": [
             {
-              "text": "You can configure your payment connection through the **Payments** section."
+              "text": "You can configure your payment connection through the "
+            },
+            {
+              "text": "Payments",
+              "bold": true
+            },
+            {
+              "text": " section."
             }
           ]
         },
@@ -1023,7 +1083,11 @@
           "font": "sans",
           "spans": [
             {
-              "text": "One thing I strongly recommend: **Test your payment system before your first event.**"
+              "text": "One thing I strongly recommend: "
+            },
+            {
+              "text": "Test your payment system before your first event.",
+              "bold": true
             }
           ]
         },

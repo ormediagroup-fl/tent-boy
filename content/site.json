@@ -212,7 +212,1197 @@
       "platform": "youtube"
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "id": "2ba5b771-fe47-4698-ba79-a0b82d204ac5",
+      "slug": "how-i-handle-bookings-and-payments-at-my-pop-up-portrait-studio-using-session",
+      "title": "How I Handle Bookings and Payments at My Pop-Up Portrait Studio Using Session",
+      "excerpt": "",
+      "date": "2026-11-10",
+      "published": true,
+      "cover": "assets/uploads/ecfc244d-8392-4193-a9be-b883e35a9c9b.webp",
+      "coverAlt": "A holiday-themed pop-up portrait studio under a white 10×10 canopy by OR Portraits. A banner reading “5 Minute Photo Shoot” hangs across the entrance. Inside, a festive Christmas backdrop features a brick wall, illuminated wreath with red bow, decorated Christmas tree, wooden flooring, and seasonal props. Two professional photography lights flank the portrait area, with sample photos displayed on the left and a check-in table on the right.",
+      "body": [
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Running a pop-up portrait studio at a local market is a great way to introduce your photography business to people in your community. But when someone walks up to your canopy and wants a photo session, you need a quick and easy way to get them booked, collect payment, and get them in front of your camera"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Hi, I'm John with OR Portraits, also known as Tent Boy!"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I've been setting up my portrait studio inside a canopy at local morning markets, and one of the questions I've been getting is how I handle bookings and payments."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "The answer? I use [Session](https://usesession.com)."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Session handles my client information, contracts, questionnaires, payments, and even photo delivery. Everything stays in one system, so I'm not constantly moving information between different applications."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Here's how I set it up."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 1: Create Your Contract"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "After logging into Session, navigate to **Manage → Contracts** and select **New Contract**."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Give your contract a recognizable name. For this tutorial, I used \"Market Session Demo.\""
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Session supports smart fields, including the client's name, which can automatically populate from the information entered during booking."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "For my market sessions, I also include the session location and date. I currently enter those manually because I don't have them automatically populating in my setup."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You'll also want to include your actual contract terms."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "**A quick note about contracts:** I'm not sharing my actual contract language because legal requirements can vary depending on where you operate. Find a contract appropriate for your business and have a qualified attorney review it."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Once everything is ready, save your contract."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 2: Build a Simple Client Questionnaire"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Next, head to **Manage → Questionnaires** and create a new questionnaire."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I like to keep mine short. Remember, my customers are standing at a market, usually using their phones, and they want to get their pictures taken—not spend ten minutes completing paperwork."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I ask two main questions:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "May I add you to my mailing list?"
+            },
+            {
+              "text": "May I use your photographs in my portfolio or on social media?"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I use Yes/No questions that require customers to actively make a selection. That way, I'm not automatically opting anyone into something they didn't choose."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "For these market sessions, I also explain that I blur minors' faces when using images for promotional purposes. That's my blanket policy for these events, and it helps keep check-in straightforward."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Save the questionnaire when you're finished."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 3: Create Your Market Session Type"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Now head to **Session Types → Create a New Session**."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "For this demonstration, I named mine \"Market Session Demo.\""
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Here's how I configure it:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Session duration:",
+              "bold": true
+            },
+            {
+              "text": " 5 minutes"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Visibility:",
+              "bold": true
+            },
+            {
+              "text": " Private"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I keep my market sessions private because I don't want someone browsing my regular booking page to accidentally book a market-only offering."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Add a recognizable image",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I use an actual photograph of the backdrop customers will see at the market."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "For example, when I set up my Christmas micro sessions, I uploaded a picture of my Christmas backdrop."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "When someone scans the QR code at my booth, the booking page shows the same backdrop they're standing in front of. It gives them an immediate visual confirmation that they're booking the correct session."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Write your session description",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I explain exactly what customers receive:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "A five-minute portrait session"
+            },
+            {
+              "text": "Three professionally edited digital images"
+            },
+            {
+              "text": "An online gallery with digital downloads"
+            },
+            {
+              "text": "A print release"
+            },
+            {
+              "text": "A $25 session fee"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I also explain my special offer: **The $25 session fee can be applied toward a future full-price family portrait session with me.**"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "That makes the market session an affordable introduction to my photography business, while giving customers an incentive to come back."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 4: Configure Pricing and Gallery Upsells"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Under **Packages and Fees**, I choose to collect the entire session fee during booking."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "My setup uses a single $25 package."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I don't use strikethrough pricing unless I'm actually offering a discount. I don't want customers thinking they're receiving a discount that doesn't exist."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Configure your gallery",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Session also allows you to configure how clients receive their photographs."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "For these short market sessions, I select delivery of final edits rather than creating a separate proofing and selection process."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I upload ten photographs to the gallery, with three included in the original package."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Then I offer two ways to purchase additional images:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Original session with 3 images",
+              "bold": true
+            },
+            {
+              "text": " $25 "
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Each additional image",
+              "bold": true
+            },
+            {
+              "text": " $5 "
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "All 7 additional images",
+              "bold": true
+            },
+            {
+              "text": " $15"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Maximum potential total with full-gallery upgrade ",
+              "bold": true
+            },
+            {
+              "text": "$40"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "That means a $25 market session has the potential to generate $40 in revenue if the customer purchases the complete gallery."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "And if that customer later books a full portrait session, there's an opportunity to build a longer-term client relationship."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "That's a big part of why I do these events in the first place."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "If you need to configure applicable sales taxes, the Packages and Fees area also provides a place to set those up."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 5: Attach Your Contract and Questionnaire"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Back in your Session Type settings, find the contract and questionnaire sections."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Select the contract you created in Step 1 and the questionnaire from Step 2."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I don't add extra post-booking or inquiry questionnaires."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "My goal is simple: get the customer checked in, get the payment processed, take their photographs, and let them enjoy the rest of the market."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "The fewer unnecessary steps, the better."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 6: Turn Off the Date Selection Requirement"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "This is one of the most important settings in my entire workflow."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Under "
+            },
+            {
+              "text": "Additional Properties",
+              "bold": true
+            },
+            {
+              "text": ", find:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Require clients to choose a date",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Turn this setting "
+            },
+            {
+              "text": "off",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Why?"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Because these are walk-in sessions."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "If someone arrives at my canopy at 11:17 a.m., I don't want them trying to decide whether they should select an 11:15 or 11:20 appointment."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "They're already standing in front of me!"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Turning off the date requirement allows customers to complete their booking without choosing an individual appointment slot."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Configure availability"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Next, open the "
+            },
+            {
+              "text": "Availability",
+              "bold": true
+            },
+            {
+              "text": " section and create a new availability schedule."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Select your market date, configure the event's hours, and assign that availability to your market session type."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "My markets typically start around 10 a.m."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Once that's configured, the booking setup is nearly complete."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 7: Connect Your Payment Processing"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Session uses Stripe to process payments."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You can configure your payment connection through the **Payments** section."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I don't walk through my personal Stripe setup in the video because it contains banking information, but Session provides a guided setup process."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "One thing I strongly recommend: **Test your payment system before your first event.**"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Even if you need to run a small transaction and pay the processing fees, it's worth knowing everything works before customers start lining up at your canopy."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 8: Generate Your Booking QR Code"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "One of my favorite parts of this setup is that Session provides a QR code for the session"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Open your session type and find the QR code option."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Download the code and add it to the flyer or signage at your market booth."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Now customers can simply scan the QR code with their phones."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "No typing website addresses. No searching for your business. No complicated instructions."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Just scan and book."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 9: What the Customer Experiences"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "When customers scan my QR code, they're taken to a mobile-friendly booking page."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "They can see the session information, backdrop image, price, and what's included."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "From there, they:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Enter their contact information."
+            },
+            {
+              "text": "Sign the contract."
+            },
+            {
+              "text": "Answer the questionnaire."
+            },
+            {
+              "text": "Review the booking price."
+            },
+            {
+              "text": "Complete payment."
+            },
+            {
+              "text": "Receive their booking confirmation."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "The booking process supports payment options such as credit cards and bank accounts, with additional digital wallet options depending on the configuration."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "I receive a notification when the booking is completed, so I know the customer is checked in."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Then it's time to take some pictures!"
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Step 10: Test the Entire Booking Experience"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Before taking your setup to a market, go through the complete booking process yourself."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Seriously. Do this."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You want to know exactly what customers see when they scan your QR code."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Check the contract, questionnaire, payment screen, confirmation page, and emails."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You can create a coupon code or a temporary $0 session to test the workflow without repeatedly charging yourself."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "It's much easier to fix a problem while sitting at your computer than when you've got a family waiting in front of your camera."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Why This Workflow Works for Me"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "My pop-up portrait studio isn't just about selling five-minute photo sessions."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "It's about introducing OR Portraits to people who might never have heard of my business otherwise."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "The $25 sessions give customers an inexpensive opportunity to experience my photography, and the credit toward a future family portrait session gives them a reason to book again."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Using Session allows me to spend less time handling paperwork and more time interacting with customers and taking photographs."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "And that's exactly what I want when I'm at a market."
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Want to Build Your Own Pop-Up Portrait Studio?"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "If you're thinking about setting up your own canopy portrait studio, I've put together the "
+            },
+            {
+              "text": "Tent Boy Quick Start Guide",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "It walks through the process of getting started, including equipment selection, canopy setup, lighting, workflow, and preparing for your first event."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You can find the guide, my gear recommendations, and other resources at:"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "tentboy.orportraits.com",
+              "href": "https://tentboy.orportraits.com"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "You can also purchase the Quick Start Guide directly on "
+            },
+            {
+              "text": "Payhip",
+              "href": "https://payhip.com/b/fcNjr"
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Hopefully, this tutorial saves you a little time and a few headaches."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "Thanks for reading, and I'll see you at the next market!"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "— John  "
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "OR Portraits | Tent Boy"
+            }
+          ]
+        }
+      ],
+      "seoTitle": "How to Use Session for Pop-Up Photography Bookings",
+      "metaDescription": "Learn how I use Session to manage QR code bookings, contracts, payments, and photo delivery for my $25 pop-up portrait studio at local markets.",
+      "focusKeyword": "pop-up photography booking system"
+    }
+  ],
   "publication": {
     "homeModifiedAt": "2026-11-10T13:33:30.638Z",
     "blogModifiedAt": "2026-11-10T13:33:30.638Z"

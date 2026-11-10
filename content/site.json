@@ -205,6 +205,11 @@
       "platform": "tiktok",
       "label": "TikTok",
       "url": "https://www.tiktok.com/@orportraits"
+    },
+    {
+      "label": "Youtube",
+      "url": "https://www.youtube.com/@ORPortraits",
+      "platform": "youtube"
     }
   ],
   "posts": [],

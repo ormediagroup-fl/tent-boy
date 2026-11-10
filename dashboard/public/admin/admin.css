@@ -22,3 +22,5 @@
 .post-body .post-video figcaption{font:14px/1.5 system-ui,sans-serif;margin-top:10px;white-space:pre-line;overflow-wrap:anywhere}
 
 .rich-video-panel{min-width:0;margin:16px 0;padding:16px;border:1px solid #a58c52;border-radius:8px}.rich-video-panel label{display:block;margin:12px 0}.rich-video-panel input,.rich-video-panel textarea,.rich-video-panel select{width:100%;box-sizing:border-box}.rich-video-panel button,.video-edit-button{min-height:44px;margin:4px;padding:8px 14px}.rich-body .post-video:focus{outline:3px solid #a58c52;outline-offset:3px}
+
+.seo-settings{margin-top:24px;border-top:1px solid #a58c52;padding-top:16px}.seo-settings summary{cursor:pointer;font-weight:700;min-height:44px}.seo-search-preview,.seo-social-preview{padding:18px;margin:12px 0;border:1px solid #ddd;border-radius:8px;background:#fff;color:#333;overflow-wrap:anywhere}.seo-search-preview div{font:20px/1.4 system-ui;color:#1a0dab}.seo-search-preview p{margin:6px 0}.seo-social-preview img{width:100%;max-height:280px;object-fit:cover;display:block;margin-bottom:12px}.seo-social-preview img[hidden]{display:none}.seo-social-preview strong{font-size:20px}

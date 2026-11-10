@@ -15,6 +15,9 @@ export function validatePosts(posts=[]) {
   check(typeof p.slug==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug)&&p.slug.length<=100&&!slugs.has(p.slug),'Posts need unique URL names using lowercase letters, numbers and hyphens.');slugs.add(p.slug);
   check(typeof p.title==='string'&&p.title.trim()&&p.title.length<=180,'Post title is required (180 characters maximum).');
   check(typeof p.excerpt==='string'&&p.excerpt.length<=500,'Post summaries must be under 500 characters.');
+  for(const key of ['seoTitle','metaDescription','focusKeyword','socialTitle','socialDescription'])check(p[key]===undefined||typeof p[key]==='string'&&p[key].length<=10000,'SEO fields must be text under 10,000 characters.');
+  check(!p.socialImage||validImage(p.socialImage),'Sharing image must be an uploaded image.');
+  check(p.previousSlugs===undefined||Array.isArray(p.previousSlugs)&&p.previousSlugs.every(s=>typeof s==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)&&s.length<=100),'Invalid previous URL names.');
   for(const key of ['publishedAt','modifiedAt'])check(p[key]===undefined||validTimestamp(p[key]),'Invalid post publication timestamp.');
   check(typeof p.published==='boolean','Post visibility must be a switch.');
   check(typeof p.date==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&!Number.isNaN(Date.parse(p.date))&&new Date(p.date).toISOString().slice(0,10)===p.date,'Enter a valid post date.');
@@ -38,6 +41,8 @@ export function validatePosts(posts=[]) {
   }
   check(count<=80000,'Post body must be under 80,000 characters.');check(!p.published||count>0,'Published posts need some text.');
  }
+ const routes=new Set(posts.map(p=>p?.slug));
+ for(const p of posts)for(const s of Array.isArray(p?.previousSlugs)?p.previousSlugs:[]){check(!routes.has(s),'A previous post URL is already in use.');routes.add(s);}
  return errors;
 }
 export function renderBody(body=[],imageURL=s=>'/'+s){
@@ -57,7 +62,7 @@ export function sortedPosts(posts=[]){return posts.filter(p=>p.published).sort((
 
 // Publication dates are owned by the server, never the editor or build clock.
 export const validTimestamp=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value)&&!Number.isNaN(Date.parse(value))&&new Date(value).toISOString()===value;
-const postView=p=>({slug:p.slug,title:p.title,date:p.date,excerpt:p.excerpt,cover:p.cover||'',coverAlt:p.coverAlt||'',body:p.body});
+const postView=p=>({slug:p.slug,title:p.title,date:p.date,excerpt:p.excerpt,cover:p.cover||'',coverAlt:p.coverAlt||'',body:p.body,...Object.fromEntries(['seoTitle','metaDescription','focusKeyword','socialTitle','socialDescription','socialImage'].map(k=>[k,p[k]||'']))});
 const indexView=d=>({socials:d.socials,posts:sortedPosts(d.posts||[]).map(p=>{const {body,...summary}=postView(p);return summary;})});
 const homeView=d=>({home:d.home,disclosure:d.disclosure,socials:d.socials,guide:d.guide?.visible?d.guide:{visible:false},products:(d.products||[]).filter(p=>p.published),categories:(d.categories||[]).filter(c=>(d.products||[]).some(p=>p.published&&p.category===c.id))});
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -69,6 +74,7 @@ export function stampPublication(previous,next,now){
  if(!same(indexView(previous),indexView(next)))result.publication.blogModifiedAt=now;
  result.posts=(result.posts||[]).map(p=>{
   const old=before.get(p.id);delete p.publishedAt;delete p.modifiedAt;
+  p.previousSlugs=[...new Set([...(old?.previousSlugs||[]),...((old?.published||old?.publishedAt)&&old.slug!==p.slug?[old.slug]:[])])].filter(s=>s!==p.slug);
   if(old?.publishedAt)p.publishedAt=old.publishedAt;
   if(old?.modifiedAt)p.modifiedAt=old.modifiedAt;
   if(p.published){
@@ -82,4 +88,32 @@ export function sitemapXML(data){
  const base='https://tentboy.orportraits.com';
  const urls=[['/',data.publication?.homeModifiedAt],['/blog/',data.publication?.blogModifiedAt],['/contact/',undefined],...sortedPosts(data.posts||[]).map(p=>['/blog/'+p.slug+'/',p.modifiedAt||p.publishedAt])];
  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(([path,date])=>'<url><loc>'+escapeHTML(base+path)+'</loc>'+(validTimestamp(date)?'<lastmod>'+date+'</lastmod>':'')+'</url>').join('')+'</urlset>\n';
+}
+
+export const BLOG_ORIGIN='https://tentboy.orportraits.com';
+export function suggestSlug(title){return title.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100).replace(/-$/,'');}
+export function suggestDescription(post){
+ const paragraphs=(post.body||[]).filter(b=>b.type==='p').map(b=>(b.spans||[]).map(s=>s.text).join('').replace(/\s+/g,' ').trim()).filter(Boolean);
+ const text=(post.excerpt?.trim()||paragraphs[0]||'').replace(/\s+/g,' ');
+ if(text.length<=160)return text;
+ const sentences=text.match(/[^.!?]+[.!?]+(?:\s|$)/g)||[];let result='';
+ for(const sentence of sentences){if((result+sentence).trim().length>160)break;result+=sentence;}
+ if(result.trim().length>=70)return result.trim();
+ return text.slice(0,157).replace(/\s+\S*$/,'').replace(/[,;:]$/,'')+'…';
+}
+export function postSEO(post){
+ const title=post.seoTitle?.trim()||post.title;
+ const description=post.metaDescription?.trim()||suggestDescription(post);
+ const image=post.socialImage||post.cover;
+ return {title,description,url:BLOG_ORIGIN+'/blog/'+post.slug+'/',socialTitle:post.socialTitle?.trim()||title,socialDescription:post.socialDescription?.trim()||description,image:image?new URL('/'+image,BLOG_ORIGIN).href:''};
+}
+export function postMetadata(post){
+ const s=postSEO(post),e=escapeHTML,published=post.publishedAt||post.date,modified=post.modifiedAt||published;
+ const schema={'@context':'https://schema.org','@type':'BlogPosting',headline:s.title,description:s.description,url:s.url,mainEntityOfPage:{'@type':'WebPage','@id':s.url},author:{'@type':'Person',name:'John O’Berg'},publisher:{'@type':'Organization',name:'Tent Boy',url:BLOG_ORIGIN},...(s.image?{image:[s.image]}:{}),...(published?{datePublished:published}:{}),...(modified?{dateModified:modified}:{})};
+ const meta=(attr,key,value)=>'<meta '+attr+'="'+key+'" content="'+e(value)+'">';
+ return '<title>'+e(s.title)+'</title>'+meta('name','description',s.description)+'<link rel="canonical" href="'+e(s.url)+'">'+meta('name','robots',post.published?'index,follow':'noindex,nofollow')+
+ meta('property','og:title',s.socialTitle)+meta('property','og:description',s.socialDescription)+meta('property','og:url',s.url)+meta('property','og:type','article')+(s.image?meta('property','og:image',s.image):'')+
+ meta('name','twitter:card',s.image?'summary_large_image':'summary')+meta('name','twitter:title',s.socialTitle)+meta('name','twitter:description',s.socialDescription)+(s.image?meta('name','twitter:image',s.image):'')+
+ (published?meta('property','article:published_time',published):'')+(modified?meta('property','article:modified_time',modified):'')+
+ '<script type="application/ld+json">'+JSON.stringify(schema).replace(/</g,'\\u003c')+'</script>';
 }

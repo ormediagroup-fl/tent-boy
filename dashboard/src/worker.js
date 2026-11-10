@@ -78,6 +78,7 @@ export async function handle(req,env){
    if(!draftHead||draftHead===main)fail('Save a draft before publishing.');const draftContent=await readContent(token,env,revision);const errors=validate(draftContent);if(errors.length)fail(errors.join('\n'));
    const compare=await github(token,`${base}/compare/${main}...${revision}`);if(compare.status!=='ahead')fail('The website changed since this draft began. Follow draft recovery instructions before publishing.',409);
    const published=stampPublication(await readContent(token,env,main),draftContent,new Date().toISOString());
+   const publishedErrors=validate(published);if(publishedErrors.length)fail(publishedErrors.join('\n'));
    let publishRevision=revision;
    if(JSON.stringify(published)!==JSON.stringify(draftContent)){
     const commit=await github(token,`${base}/git/commits/${revision}`);

@@ -1753,11 +1753,14 @@
       ],
       "seoTitle": "How to Use Session for Pop-Up Photography Bookings",
       "metaDescription": "Learn how I use Session to manage QR code bookings, contracts, payments, and photo delivery for my $25 pop-up portrait studio at local markets.",
-      "focusKeyword": "pop-up photography booking system"
+      "focusKeyword": "pop-up photography booking system",
+      "previousSlugs": [],
+      "publishedAt": "2026-11-11T00:27:57.595Z",
+      "modifiedAt": "2026-11-11T00:27:57.595Z"
     }
   ],
   "publication": {
     "homeModifiedAt": "2026-11-10T13:33:30.638Z",
-    "blogModifiedAt": "2026-11-10T13:33:30.638Z"
+    "blogModifiedAt": "2026-11-11T00:27:57.595Z"
   }
 }

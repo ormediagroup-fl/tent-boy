@@ -375,7 +375,7 @@
               "bold": true
             },
             {
-              "text": " I'm not sharing my actual contract language because legal requirements can vary depending on where you operate. Find a contract appropriate for your business and have a qualified attorney review it."
+              "text": " I'm not sharing my actual contract language because legal requirements can vary depending on where you operate. Find a contract appropriate for your business and have a qualified attorney review it.  I do recommend keeping it as simple as possible for those that want to read it while they're signing up."
             }
           ]
         },
@@ -387,6 +387,23 @@
               "text": "Once everything is ready, save your contract."
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/a95be99e-e808-46b5-92fe-655d6b83d9af.webp",
+          "alt": "Contract Edit Screen in Session",
+          "caption": "Contract Edit Screen in Session",
+          "width": "medium",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -436,10 +453,7 @@
           "font": "sans",
           "spans": [
             {
-              "text": "May I add you to my mailing list?"
-            },
-            {
-              "text": "May I use your photographs in my portfolio or on social media?"
+              "text": "May I add you to my mailing list? May I use your photographs in my portfolio or on social media?"
             }
           ]
         },
@@ -469,6 +483,23 @@
               "text": "Save the questionnaire when you're finished."
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/d6217c06-10ea-416c-8b6a-96745cb8d813.webp",
+          "alt": "Questionnaire Edit Screen in Session",
+          "caption": "Questionnaire Edit Screen in Session",
+          "width": "medium",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -609,19 +640,7 @@
           "font": "sans",
           "spans": [
             {
-              "text": "A five-minute portrait session"
-            },
-            {
-              "text": "Three professionally edited digital images"
-            },
-            {
-              "text": "An online gallery with digital downloads"
-            },
-            {
-              "text": "A print release"
-            },
-            {
-              "text": "A $25 session fee"
+              "text": "A five-minute portrait sessionThree professionally edited digital imagesAn online gallery with digital downloadsA print releaseA $25 session fee"
             }
           ]
         },
@@ -646,6 +665,57 @@
               "text": "That makes the market session an affordable introduction to my photography business, while giving customers an incentive to come back."
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/84a51899-1532-43bb-89e2-669056b9172b.webp",
+          "alt": "New session type dialogue box in Session",
+          "caption": "New session type dialogue box in Session",
+          "width": "small",
+          "align": "center"
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/7f3fcc33-e0ad-4dab-a6ed-5ca34a3b4941.webp",
+          "alt": "Session details page",
+          "caption": "Session details page",
+          "width": "medium",
+          "align": "center"
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/0939ff3a-0de3-4916-bf67-c56c279281e5.webp",
+          "alt": "Session details page",
+          "caption": "Session details page",
+          "width": "medium",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -689,6 +759,23 @@
               "text": "I don't use strikethrough pricing unless I'm actually offering a discount. I don't want customers thinking they're receiving a discount that doesn't exist."
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/52f27afc-191d-45a7-943d-486719d30e17.webp",
+          "alt": "Pricing options",
+          "caption": "Pricing Options",
+          "width": "medium",
+          "align": "center"
         },
         {
           "type": "h3",
@@ -825,6 +912,23 @@
           ]
         },
         {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/2579654e-9259-466d-bfd3-b257e0bcbb11.webp",
+          "alt": "Gallery Options",
+          "caption": "Gallery options",
+          "width": "medium",
+          "align": "center"
+        },
+        {
           "type": "h2",
           "font": "sans",
           "spans": [
@@ -875,6 +979,32 @@
           "spans": [
             {
               "text": "The fewer unnecessary steps, the better."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/f09fb7f3-d1d3-4015-acc5-077691f5e06d.webp",
+          "alt": "Add questionnaire",
+          "caption": "Add questionnaire",
+          "width": "small",
+          "align": "center"
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
             }
           ]
         },
@@ -1204,22 +1334,7 @@
           "font": "sans",
           "spans": [
             {
-              "text": "Enter their contact information."
-            },
-            {
-              "text": "Sign the contract."
-            },
-            {
-              "text": "Answer the questionnaire."
-            },
-            {
-              "text": "Review the booking price."
-            },
-            {
-              "text": "Complete payment."
-            },
-            {
-              "text": "Receive their booking confirmation."
+              "text": "Enter their contact information.Sign the contract.Answer the questionnaire.Review the booking price.Complete payment.Receive their booking confirmation."
             }
           ]
         },
@@ -1471,6 +1586,46 @@
               "text": "OR Portraits | Tent Boy"
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
         }
       ],
       "seoTitle": "How to Use Session for Pop-Up Photography Bookings",

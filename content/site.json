@@ -994,8 +994,8 @@
         {
           "type": "image",
           "src": "assets/uploads/f09fb7f3-d1d3-4015-acc5-077691f5e06d.webp",
-          "alt": "Add questionnaire",
-          "caption": "Add questionnaire",
+          "alt": "Add contract",
+          "caption": "Add contract",
           "width": "small",
           "align": "center"
         },
@@ -1007,6 +1007,14 @@
               "text": "\n"
             }
           ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/db42ca54-1010-47cb-80c5-d2fbf8278305.webp",
+          "alt": "Add questionnaire",
+          "caption": "Qdd questionnaire",
+          "width": "small",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -1114,6 +1122,23 @@
           ]
         },
         {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/595058ce-233e-4819-b250-2d05d217c037.webp",
+          "alt": "Additional properties",
+          "caption": "Additional properties",
+          "width": "medium",
+          "align": "center"
+        },
+        {
           "type": "h3",
           "font": "sans",
           "spans": [
@@ -1164,6 +1189,40 @@
               "text": "Once that's configured, the booking setup is nearly complete."
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/5f865d86-379a-4c70-8e94-4a60bbfaedd4.webp",
+          "alt": "Availability screen calendar",
+          "caption": "Availability screen calendar",
+          "width": "medium",
+          "align": "center"
+        },
+        {
+          "type": "h2",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/6d116639-b4eb-4497-a06e-a613ff3265e6.webp",
+          "alt": "Availability set time and date",
+          "caption": "Availability set time and date",
+          "width": "medium",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -1294,6 +1353,23 @@
           ]
         },
         {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/dcfce4d6-fc13-495c-96ba-641283fce58c.webp",
+          "alt": "Session QR Code",
+          "caption": "Session QR Code",
+          "width": "small",
+          "align": "center"
+        },
+        {
           "type": "h2",
           "font": "sans",
           "spans": [
@@ -1334,7 +1410,7 @@
           "font": "sans",
           "spans": [
             {
-              "text": "Enter their contact information.Sign the contract.Answer the questionnaire.Review the booking price.Complete payment.Receive their booking confirmation."
+              "text": "Enter their contact information.  Sign the contract.  Answer the questionnaire.  Review the booking price.  Complete payment.  Receive their booking confirmation."
             }
           ]
         },
@@ -1364,6 +1440,23 @@
               "text": "Then it's time to take some pictures!"
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": [
+            {
+              "text": "\n"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "src": "assets/uploads/e10a3881-48cf-4764-9d1f-b307dd58e238.webp",
+          "alt": "Example of Session booking landing page",
+          "caption": "Example of Session booking landing page",
+          "width": "small",
+          "align": "center"
         },
         {
           "type": "h2",
@@ -1586,6 +1679,36 @@
               "text": "OR Portraits | Tent Boy"
             }
           ]
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
+        },
+        {
+          "type": "p",
+          "font": "sans",
+          "spans": []
         },
         {
           "type": "p",
